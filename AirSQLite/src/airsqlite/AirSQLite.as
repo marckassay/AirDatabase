@@ -1,54 +1,44 @@
 package airsqlite
 {
-	import airsqlite.interfaces.ICRUDOperator;
-	import airsqlite.schema.AbstractTable;
+	import airsqlite.core.DataManipulator;
+	import airsqlite.core.asl_internal;
+	import airsqlite.interfaces.IDataVerb;
+	import airsqlite.interfaces.IDataNoun;
 	
-	import flash.events.EventDispatcher;
-	import airsqlite.core.CRUDOperator;
-	import airsqlite.core.DataSender;
+	use namespace asl_internal;
 	
-	public class AirSQLite extends EventDispatcher implements ICRUDOperator
+	public class AirSQLite implements IDataVerb
 	{		
 		private var _config:ASLConfig;
 
-		private var operator:CRUDOperator;
+		private var connector:DataManipulator;
 		
-		private var sender:DataSender;
 		
 		/**
 		 * Constructor is arguments are closed for MXML component implementation.
 		 */
 		public function AirSQLite()
 		{
-			sender = DataSender.getInstance();
 		}
 		
-		public function select(...params):*
+		public function select(result:Function=null, status:Function=null):IDataNoun
 		{
-			return table().select(params);
+			return connector.select(result,status);
 		}
 		
-		public function create(...params):*
+		public function create(result:Function=null, status:Function=null):IDataNoun
 		{
-			return table().create(params);
+			return connector.create(result,status);
 		}
 		
-		public function update(...params):*
+		public function update(result:Function=null, status:Function=null):IDataNoun
 		{
-			return table().update(params);
+			return connector.update(result,status);
 		}
 		
-		public function del(...params):*
+		public function remove(result:Function=null, status:Function=null):IDataNoun
 		{
-			return table().del(params);			
-		}
-		
-		public function table(name:String=null):ICRUDOperator
-		{
-			if(name == null)
-				name = AbstractTable.DEFAULT_TABLE;
-			
-			return operator.tables[name];
+			return connector.remove(result,status);
 		}
 		
 		
@@ -60,7 +50,7 @@ package airsqlite
 		{
 			_config = value;
 			
-			operator = new CRUDOperator(value);
+			connector = new DataManipulator(value);
 		}
 	}
 }

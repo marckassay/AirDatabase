@@ -7,15 +7,17 @@
     <classEntry path="airsqlite.schema.DefaultTable"/>
     <classEntry path="airsqlite.schema.DefaultColumn"/>
     <classEntry path="airsqlite.schema.DataTypes"/>
-    <classEntry path="airsqlite.interfaces.ICRUDOperator"/>
-    <classEntry path="airsqlite.interfaces.IDataColumn"/>
+    <classEntry path="airsqlite.interfaces.IDataVerb"/>
     <classEntry path="airsqlite.schema.AbstractColumn"/>
     <classEntry path="airsqlite.schema.AbstractTable"/>
     <classEntry path="airsqlite.core.DataConnector"/>
     <classEntry path="airsqlite.core.DataSender"/>
-    <classEntry path="airsqlite.core.CRUDOperator"/>
+    <classEntry path="airsqlite.core.DataManipulator"/>
     <classEntry path="airsqlite.core.TransactionQueueManager"/>
     <classEntry path="airsqlite.ASLStatement"/>
+    <classEntry path="airsqlite.interfaces.IDataNoun"/>
+    <classEntry path="airsqlite.interfaces.IDataPreposition"/>
+    <classEntry path="airsqlite.statement.Reference"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

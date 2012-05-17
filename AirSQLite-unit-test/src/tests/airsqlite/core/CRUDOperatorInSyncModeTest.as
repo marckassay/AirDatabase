@@ -1,7 +1,8 @@
 package tests.airsqlite.core
 {
 	import airsqlite.ASLConfig;
-	import airsqlite.core.CRUDOperator;
+	import airsqlite.core.DataManipulator;
+	import airsqlite.core.DataConnector;
 	import airsqlite.core.asl_unit_testing;
 	import airsqlite.interfaces.ICRUDOperator;
 	import airsqlite.interfaces.IDataColumn;
@@ -21,7 +22,7 @@ package tests.airsqlite.core
 		private const KEY:String 		= "key";
 		private const NAME:String 		= "name";
 		
-		private var fixture:CRUDOperator;		
+		private var fixture:DataManipulator;		
 		
 		
 		[Before]
@@ -32,7 +33,7 @@ package tests.airsqlite.core
 			config.tables 			 = tables;
 			config.uri 				 = DATA_BASE_FILE;
 			
-			fixture 				 = new CRUDOperator(config);
+			fixture 				 = new DataManipulator(config);
 		}   
 		
 		[After]  
