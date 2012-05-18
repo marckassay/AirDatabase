@@ -10,7 +10,7 @@ package airsqlite.schema
 	
 	public class DefaultTable extends AbstractTable
 	{
-		private var _connector:DataManipulator;
+		private var _manipulator:DataManipulator;
 		
 		/**
 		 * Constructor's arguments are closed for MXML component implementation.
@@ -21,39 +21,39 @@ package airsqlite.schema
 		
 		override public function select(result:Function=null, status:Function=null):IDataNoun
 		{
-			var statement:ASLStatement = connector.select(result, status) as ASLStatement;
+			var statement:ASLStatement = manipulator.select(result, status) as ASLStatement;
 			statement.tableName = name;
 			return statement;
 		}
 		
 		override public function create(result:Function=null, status:Function=null):IDataNoun
 		{
-			var statement:ASLStatement = connector.select(result, status) as ASLStatement;
+			var statement:ASLStatement = manipulator.select(result, status) as ASLStatement;
 			statement.tableName = name;
 			return statement;
 		}
 		
 		override public function update(result:Function=null, status:Function=null):IDataNoun
 		{
-			var statement:ASLStatement = connector.select(result, status) as ASLStatement;
+			var statement:ASLStatement = manipulator.select(result, status) as ASLStatement;
 			statement.tableName = name;
 			return statement;
 		}
 		
 		override public function remove(result:Function=null, status:Function=null):IDataNoun
 		{
-			var statement:ASLStatement = connector.select(result, status) as ASLStatement;
+			var statement:ASLStatement = manipulator.select(result, status) as ASLStatement;
 			statement.tableName = name;
 			return statement;
 		}
 		
-		asl_internal function get connector():DataManipulator
+		asl_internal function get manipulator():DataManipulator
 		{
-			return _connector;
+			return _manipulator;
 		}
-		asl_internal function set connector(value:DataManipulator):void
+		asl_internal function set manipulator(value:DataManipulator):void
 		{
-			_connector = value;
+			_manipulator = value;
 		}
 	}
 }

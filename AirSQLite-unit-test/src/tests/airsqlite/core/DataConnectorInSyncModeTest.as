@@ -4,8 +4,8 @@ package tests.airsqlite.core
 	import airsqlite.ASLStatement;
 	import airsqlite.core.DataConnector;
 	import airsqlite.core.asl_unit_testing;
-	import airsqlite.interfaces.ICRUDOperator;
 	import airsqlite.interfaces.IDataColumn;
+	import airsqlite.interfaces.IDataVerb;
 	import airsqlite.schema.DataTypes;
 	import airsqlite.schema.DefaultColumn;
 	import airsqlite.schema.DefaultTable;
@@ -92,9 +92,9 @@ package tests.airsqlite.core
 			}
 		}
 		
-		private function get tables():Vector.<ICRUDOperator>
+		private function get tables():Vector.<IDataVerb>
 		{
-			var _tables:Vector.<ICRUDOperator> 	= new Vector.<ICRUDOperator>();
+			var _tables:Vector.<IDataVerb> 		= new Vector.<IDataVerb>();
 			var tableA:DefaultTable 			= new DefaultTable();
 			tableA.id 							= TABLE_A;
 			

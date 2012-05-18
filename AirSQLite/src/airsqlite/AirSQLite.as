@@ -11,7 +11,7 @@ package airsqlite
 	{		
 		private var _config:ASLConfig;
 
-		private var connector:DataManipulator;
+		private var manipulator:DataManipulator;
 		
 		
 		/**
@@ -23,22 +23,22 @@ package airsqlite
 		
 		public function select(result:Function=null, status:Function=null):IDataNoun
 		{
-			return connector.select(result,status);
+			return manipulator.select(result,status);
 		}
 		
 		public function create(result:Function=null, status:Function=null):IDataNoun
 		{
-			return connector.create(result,status);
+			return manipulator.create(result,status);
 		}
 		
 		public function update(result:Function=null, status:Function=null):IDataNoun
 		{
-			return connector.update(result,status);
+			return manipulator.update(result,status);
 		}
 		
 		public function remove(result:Function=null, status:Function=null):IDataNoun
 		{
-			return connector.remove(result,status);
+			return manipulator.remove(result,status);
 		}
 		
 		
@@ -50,7 +50,7 @@ package airsqlite
 		{
 			_config = value;
 			
-			connector = new DataManipulator(value);
+			manipulator = new DataManipulator(value);
 		}
 	}
 }

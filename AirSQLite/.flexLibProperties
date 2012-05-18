@@ -17,7 +17,6 @@
     <classEntry path="airsqlite.ASLStatement"/>
     <classEntry path="airsqlite.interfaces.IDataNoun"/>
     <classEntry path="airsqlite.interfaces.IDataPreposition"/>
-    <classEntry path="airsqlite.statement.Reference"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

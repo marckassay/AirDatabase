@@ -1,94 +1,91 @@
 package tests.airsqlite.core
 {
 	import airsqlite.ASLConfig;
+	import airsqlite.ASLStatement;
 	import airsqlite.core.DataManipulator;
-	import airsqlite.core.DataConnector;
-	import airsqlite.core.asl_unit_testing;
-	import airsqlite.interfaces.ICRUDOperator;
-	import airsqlite.interfaces.IDataColumn;
-	import airsqlite.schema.DataTypes;
-	import airsqlite.schema.DefaultColumn;
-	import airsqlite.schema.DefaultTable;
+	import airsqlite.interfaces.IDataNoun;
+	import airsqlite.statement.DataManipulationVerb;
 	
-	import flash.filesystem.File;
+	import org.flexunit.assertThat;
+	import org.flexunit.asserts.assertEquals;
+	import org.flexunit.asserts.assertFalse;
+	import org.flexunit.asserts.assertStrictlyEquals;
+	import org.hamcrest.object.instanceOf;
 	
-	use namespace asl_unit_testing;
 	
-	public class CRUDOperatorInSyncModeTest
+	public class DataManipulatorInSyncModeTest
 	{
 		private const DATA_BASE_FILE:String = "testing.db";
-		
-		private const TABLE_A:String 	= "tableA";
-		private const KEY:String 		= "key";
-		private const NAME:String 		= "name";
-		
+
 		private var fixture:DataManipulator;		
-		
 		
 		[Before]
 		public function runBeforeEveryTest():void 
 		{			
-			var config:ASLConfig 	 = new ASLConfig();
+			var config:ASLConfig = new ASLConfig();
 			config.asyncConnection 	 = false;
-			config.tables 			 = tables;
 			config.uri 				 = DATA_BASE_FILE;
 			
-			fixture 				 = new DataManipulator(config);
+			fixture = new DataManipulator(config);
 		}   
 		
 		[After]  
 		public function runAfterEveryTest():void 
-		{   
-			deleteDataBaseFile();
-			
-			fixture 				= null;  
+		{  			
+			fixture = null;  
 		}
 		
-		[Test(order="1")]
-		public function testThatDataBaseFileHasBeenWrittenToDisk():void 
+		[Test]
+		public function testSelectMethodIsReturningAsExpected():void 
 		{
+			var result:Function = function():void{};
+			var status:Function = function():void{};
 			
+			var statement:IDataNoun = fixture.select(result, status);
+			
+			assertThat(statement, instanceOf(ASLStatement));
+			assertStrictlyEquals((statement as ASLStatement).manipulator, fixture);
+			
+			assertEquals((statement as ASLStatement).manipulationVerb, DataManipulationVerb.SELECT);
 		}
 		
-		private function deleteDataBaseFile():void
+		[Test]
+		public function testCreateMethodIsReturningAsExpected():void 
 		{
-			// delete db file on disk, if it exists.
-			try
-			{
-				var databaseFile:File = File.applicationStorageDirectory.resolvePath(DATA_BASE_FILE);
-				if(databaseFile.exists == true)
-				{
-					fixture.testSQL.close();
-					databaseFile.deleteFile();
-				}
-			}
-			catch(error:Error)
-			{
-				// swallow error if any.
-			}
+			var result:Function = function():void{};
+			var status:Function = function():void{};
+			
+			var statement:IDataNoun = fixture.create(result, status);
+			
+			assertThat(statement, instanceOf(ASLStatement));
+			assertStrictlyEquals((statement as ASLStatement).manipulator, fixture);
+			assertEquals((statement as ASLStatement).manipulationVerb, DataManipulationVerb.CREATE);
 		}
 		
-		private function get tables():Vector.<ICRUDOperator>
+		[Test]
+		public function testUpdateMethodIsReturningAsExpected():void 
 		{
-			var _tables:Vector.<ICRUDOperator> 	= new Vector.<ICRUDOperator>();
-			var tableA:DefaultTable 			= new DefaultTable();
-			tableA.id 							= TABLE_A;
+			var result:Function = function():void{};
+			var status:Function = function():void{};
 			
-			var columns:Vector.<IDataColumn> 	= new Vector.<IDataColumn>();
-			var columnA:DefaultColumn			= new DefaultColumn();
-			columnA.id 							= KEY;
-			columnA.dataType 					= DataTypes.NUMERIC.value;
-			columns.push(columnA);
+			var statement:IDataNoun = fixture.update(result, status);
 			
-			var columnB:DefaultColumn			= new DefaultColumn();
-			columnB.id 							= NAME;
-			columnB.dataType 					= DataTypes.TEXT.value;
-			columns.push(columnB);
+			assertThat(statement, instanceOf(ASLStatement));
+			assertStrictlyEquals((statement as ASLStatement).manipulator, fixture);
+			assertEquals((statement as ASLStatement).manipulationVerb, DataManipulationVerb.UPDATE);
+		}
+		
+		[Test]
+		public function testRemoveMethodIsReturningAsExpected():void 
+		{
+			var result:Function = function():void{};
+			var status:Function = function():void{};
 			
-			tableA.columns = columns;
-			_tables.push(tableA);
+			var statement:IDataNoun = fixture.remove(result, status);
 			
-			return _tables;
+			assertThat(statement, instanceOf(ASLStatement));
+			assertStrictlyEquals((statement as ASLStatement).manipulator, fixture);
+			assertEquals((statement as ASLStatement).manipulationVerb, DataManipulationVerb.REMOVE);
 		}
 	}
 }
