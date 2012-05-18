@@ -2,28 +2,16 @@ package tests.airsqlite.schema
 {
 	import airsqlite.ASLConfig;
 	import airsqlite.ASLStatement;
-	import airsqlite.core.DataConnector;
 	import airsqlite.core.DataManipulator;
 	import airsqlite.core.asl_internal;
 	import airsqlite.core.asl_unit_testing;
-	import airsqlite.interfaces.IDataColumn;
 	import airsqlite.interfaces.IDataNoun;
-	import airsqlite.interfaces.IDataVerb;
-	import airsqlite.schema.DataTypes;
-	import airsqlite.schema.DefaultColumn;
 	import airsqlite.schema.DefaultTable;
 	
-	import flash.data.SQLResult;
-	import flash.filesystem.File;
-	
-	import mockolate.ingredients.Invocation;
 	import mockolate.mock;
 	import mockolate.runner.MockolateRule;
-	import mockolate.stub;
 	
 	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertTrue;
-	import org.hamcrest.core.anything;
 	
 	use namespace asl_unit_testing;
 	
@@ -36,7 +24,7 @@ package tests.airsqlite.schema
 		[Rule]
 		public var rule:MockolateRule = new MockolateRule();
 		
-		[Mock(args="getASQLiteConfig")]
+		[Mock(type="nice", args="getASQLiteConfig")]
 		public var manipulator:DataManipulator;
 		
 		//[Mock]
@@ -63,18 +51,57 @@ package tests.airsqlite.schema
 			fixture = null;  
 		}
 		
-		[Ignore]
-		[Test]
+		[Test(order="1")]
 		public function testSelectMethodIsReturningAsExpected():void 
 		{			
-			mock(manipulator).method('select').args(anything()).callsWithInvocation(function(invocation:Invocation):ASLStatement 
-			{
-				return new ASLStatement();
-			});
+			var statement:ASLStatement = new ASLStatement();
+			mock(manipulator).method('select').args(null, null).returns( statement );
 
 			fixture.asl_internal::manipulator = manipulator;
 			
 			var result:IDataNoun = fixture.select();
+			
+			assertEquals((result as ASLStatement).tableName, TABLE_A);
+			assertEquals(fixture.id, TABLE_A);
+		}
+		
+		[Test(order="2")]
+		public function testCreateMethodIsReturningAsExpected():void 
+		{			
+			var statement:ASLStatement = new ASLStatement()
+			mock(manipulator).method('create').args(null, null).returns( statement );
+
+			fixture.asl_internal::manipulator = manipulator;
+			
+			var result:IDataNoun = fixture.create();
+			
+			assertEquals((result as ASLStatement).tableName, TABLE_A);
+			assertEquals(fixture.id, TABLE_A);
+		}
+		
+		[Test(order="3")]
+		public function testUpdateMethodIsReturningAsExpected():void 
+		{			
+			var statement:ASLStatement = new ASLStatement()
+			mock(manipulator).method('update').args(null, null).returns( statement );
+
+			fixture.asl_internal::manipulator = manipulator;
+			
+			var result:IDataNoun = fixture.update();
+			
+			assertEquals((result as ASLStatement).tableName, TABLE_A);
+			assertEquals(fixture.id, TABLE_A);
+		}
+		
+		[Test(order="4")]
+		public function testRemoveMethodIsReturningAsExpected():void 
+		{			
+			var statement:ASLStatement = new ASLStatement()
+			mock(manipulator).method('remove').args(null, null).returns( statement );
+
+			fixture.asl_internal::manipulator = manipulator;
+			
+			var result:IDataNoun = fixture.remove();
 			
 			assertEquals((result as ASLStatement).tableName, TABLE_A);
 			assertEquals(fixture.id, TABLE_A);
