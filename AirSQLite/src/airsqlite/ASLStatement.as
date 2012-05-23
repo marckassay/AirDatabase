@@ -47,16 +47,14 @@ package airsqlite
 		 */
 		public function go():*
 		{
-			this.text = constructStringStatement(manipulationVerb, 
-												 reference,
-												 tableName);
+			this.text = constructStringStatement();
 			
 			return manipulator.processASLStatement(this);
 		}
 
-		private function constructStringStatement(verb:DataManipulationVerb, reference:Object, tableName:String):String
+		private function constructStringStatement():String
 		{
-			return '';
+			return "";
 		}
 		
 		// IDataNoun implementations

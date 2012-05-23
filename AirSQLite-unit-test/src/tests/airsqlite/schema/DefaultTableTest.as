@@ -27,8 +27,6 @@ package tests.airsqlite.schema
 		[Mock(type="nice", args="getASQLiteConfig")]
 		public var manipulator:DataManipulator;
 		
-		//[Mock]
-		//public var statement:ASLStatement;
 		
 		public function getASQLiteConfig():Array 
 		{

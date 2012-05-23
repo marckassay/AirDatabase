@@ -1,5 +1,6 @@
 package
 {
+	import tests.airsqlite.ASLStatementTest;
 	import tests.airsqlite.core.DataConnectorInSyncModeTest;
 	import tests.airsqlite.core.DataManipulatorInSyncModeTest;
 	import tests.airsqlite.core.TransactionQueueManagerTest;
@@ -14,5 +15,6 @@ package
 		public var t2:DataConnectorInSyncModeTest;
 		public var t3:DataManipulatorInSyncModeTest;
 		public var t4:DefaultTableTest;
+		public var t5:ASLStatementTest;
 	}
 }
