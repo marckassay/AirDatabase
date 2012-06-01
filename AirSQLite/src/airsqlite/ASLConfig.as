@@ -1,5 +1,6 @@
 package airsqlite
 {
+	import airsqlite.filters.strings.contains;
 	import airsqlite.interfaces.IDataVerb;
 	import airsqlite.schema.DefaultTable;
 	

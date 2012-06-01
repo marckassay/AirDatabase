@@ -4,7 +4,11 @@ package airsqlite
 	import airsqlite.interfaces.IDataNoun;
 	import airsqlite.interfaces.IDataPreposition;
 	import airsqlite.statement.DataManipulationVerb;
-	import airsqlite.statement.Reference;
+	import airsqlite.statement.delegates.ASLStatementDelegate;
+	import airsqlite.statement.delegates.CreateDelegate;
+	import airsqlite.statement.delegates.RemoveDelegate;
+	import airsqlite.statement.delegates.SelectDelegate;
+	import airsqlite.statement.delegates.UpdateDelegate;
 	
 	import flash.data.SQLStatement;
 	import flash.net.Responder;
@@ -16,21 +20,19 @@ package airsqlite
 		
 		private var _manipulationVerb:DataManipulationVerb;
 		
+		private var delegate:ASLStatementDelegate;
+		
 		private var _tableName:String;
 		
 		private var _responder:Responder;
 		
 		private var prefetch:int = -1;
-		
-		private var reference:Reference;
-		
+				
 		
 		public function ASLStatement(result:Function=null, status:Function=null)
 		{			
 			if(result != null)
 				_responder = new Responder(result, status);
-			
-			reference = new Reference();
 		}
 		
 		/**
@@ -47,48 +49,56 @@ package airsqlite
 		 */
 		public function go():*
 		{
-			this.text = constructStringStatement();
+			delegate.constructStatement(this);
 			
 			return manipulator.processASLStatement(this);
 		}
-
-		private function constructStringStatement():String
+		
+		private function addDelegate():void
 		{
-			return "";
+			switch(manipulationVerb)
+			{
+				case DataManipulationVerb.SELECT:
+					delegate = new SelectDelegate();
+					break;
+				case DataManipulationVerb.CREATE:
+					delegate = new CreateDelegate();
+					break;
+				case DataManipulationVerb.UPDATE:
+					delegate = new UpdateDelegate();
+					break;
+				case DataManipulationVerb.REMOVE:
+					delegate = new RemoveDelegate();
+					break;
+			}
 		}
 		
 		// IDataNoun implementations
 		public function record(reference:*):IDataPreposition
 		{
-			reference.record(reference);
-			
-			return this;
+			return delegate.record(reference);
 		}
 		
-		public function field(field:String, matcher:Object):IDataPreposition
+		public function field(field:String, condition:*):IDataPreposition
 		{
-			reference.field(field, matcher);
-			
-			return this;
+			return delegate.field(field, condition);
 		}
-		
 		
 		// IDataPreposition implementations
 		public function from(tableName:String):*
 		{			
-			this.tableName = tableName;
+			delegate.tableName = tableName;
 			
 			return go();
 		}
 		
 		public function to(tableName:String):*
 		{				
-			this.tableName = tableName;
+			delegate.tableName = tableName;
 			
 			return go();			
 		}
-		
-		
+		/*
 		public function all():IDataPreposition
 		{
 			this.prefetch = -1;
@@ -102,7 +112,7 @@ package airsqlite
 			
 			return this;
 		}
-		/*
+		
 		public function previousRecords(prefetch:int=1):IDataPreposition
 		{
 			this.prefetch = prefetch * -1;
@@ -122,6 +132,8 @@ package airsqlite
 		public function set manipulationVerb(value:DataManipulationVerb):void
 		{
 			_manipulationVerb = value;
+			
+			addDelegate();
 		}
 
 		
@@ -132,6 +144,8 @@ package airsqlite
 		public function set tableName(value:String):void
 		{
 			_tableName = value;
+			
+			delegate.tableName = value;
 		}
 
 		

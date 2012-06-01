@@ -7,6 +7,7 @@ package tests.airsqlite.schema
 	import airsqlite.core.asl_unit_testing;
 	import airsqlite.interfaces.IDataNoun;
 	import airsqlite.schema.DefaultTable;
+	import airsqlite.statement.DataManipulationVerb;
 	
 	import mockolate.mock;
 	import mockolate.runner.MockolateRule;
@@ -53,6 +54,7 @@ package tests.airsqlite.schema
 		public function testSelectMethodIsReturningAsExpected():void 
 		{			
 			var statement:ASLStatement = new ASLStatement();
+			statement.manipulationVerb = DataManipulationVerb.SELECT;
 			mock(manipulator).method('select').args(null, null).returns( statement );
 
 			fixture.asl_internal::manipulator = manipulator;
@@ -67,6 +69,7 @@ package tests.airsqlite.schema
 		public function testCreateMethodIsReturningAsExpected():void 
 		{			
 			var statement:ASLStatement = new ASLStatement()
+			statement.manipulationVerb = DataManipulationVerb.CREATE;
 			mock(manipulator).method('create').args(null, null).returns( statement );
 
 			fixture.asl_internal::manipulator = manipulator;
@@ -81,6 +84,7 @@ package tests.airsqlite.schema
 		public function testUpdateMethodIsReturningAsExpected():void 
 		{			
 			var statement:ASLStatement = new ASLStatement()
+			statement.manipulationVerb = DataManipulationVerb.UPDATE;
 			mock(manipulator).method('update').args(null, null).returns( statement );
 
 			fixture.asl_internal::manipulator = manipulator;
@@ -95,6 +99,7 @@ package tests.airsqlite.schema
 		public function testRemoveMethodIsReturningAsExpected():void 
 		{			
 			var statement:ASLStatement = new ASLStatement()
+			statement.manipulationVerb = DataManipulationVerb.REMOVE;
 			mock(manipulator).method('remove').args(null, null).returns( statement );
 
 			fixture.asl_internal::manipulator = manipulator;

@@ -17,6 +17,16 @@
     <classEntry path="airsqlite.ASLStatement"/>
     <classEntry path="airsqlite.interfaces.IDataNoun"/>
     <classEntry path="airsqlite.interfaces.IDataPreposition"/>
+    <classEntry path="airsqlite.interfaces.IASLStatementDelegate"/>
+    <classEntry path="airsqlite.statement.delegates.ASLStatementDelegate"/>
+    <classEntry path="airsqlite.filters.numbers.greaterThan"/>
+    <classEntry path="airsqlite.filters.numbers.lessThan"/>
+    <classEntry path="airsqlite.filters.strings.contains"/>
+    <classEntry path="airsqlite.filters.Filter"/>
+    <classEntry path="airsqlite.statement.FieldObject"/>
+    <classEntry path="airsqlite.statement.delegates.CreateDelegate"/>
+    <classEntry path="airsqlite.statement.delegates.UpdateDelegate"/>
+    <classEntry path="airsqlite.statement.delegates.RemoveDelegate"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>
