@@ -20,9 +20,9 @@ package tests.airsqlite
 	
 	public class ASLStatementTest
 	{
-		private const TABLE_A:String = "tableA";
+		private const CHARACTERS:String = "Characters";
 		
-		private var fixture:ASLStatement;	
+		private var fixture:ASLStatement;
 
 		[Rule]
 		public var rule:MockolateRule = new MockolateRule();
@@ -59,7 +59,7 @@ package tests.airsqlite
 			
 			fixture.manipulationVerb = DataManipulationVerb.SELECT;
 
-			var statement:ASLStatement //= fixture.all().from(TABLE_A);
+			var statement:ASLStatement //= fixture.all().from(CHARACTERS);
 			
 			assertEquals(statement.text, "SELECT * FROM tableA");
 		}

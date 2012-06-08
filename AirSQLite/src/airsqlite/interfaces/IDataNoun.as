@@ -11,7 +11,7 @@ package airsqlite.interfaces
 		 * 
 		 * @see mx.utils.UIDUtil.isUID()  
 		 */
-		function record(reference:*):IDataPreposition
+		function record(reference:*):IASLStatementDelegate
 		
 		/**
 		 * To be used to retrieve records with columns, via <code>field</code> param 
@@ -22,10 +22,10 @@ package airsqlite.interfaces
 		 * @param condition may be a String or Number value that will filter the results.
  		 * @example
 	 	 * <code>
-		 * 	asl.select().field('username', 'Marc').field('password', 'Abc123').from('users');
-		 * 	asl.select().field('username', startsWith('Ma')).from('users');
+		 * 	asl.select().field('first', 'Dagny').field('password', 'Abc123').from('Characters');
+		 * 	asl.select().field('username', startsWith('Da')).from('Characters');
 	 	 * </code>
 		 */
-		function field(field:String, condition:*):IDataPreposition
+		function field(field:String, condition:*):IASLStatementDelegate
 	}
 }

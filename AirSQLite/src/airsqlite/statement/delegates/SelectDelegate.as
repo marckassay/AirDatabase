@@ -2,7 +2,6 @@ package airsqlite.statement.delegates
 {
 	import airsqlite.ASLStatement;
 	import airsqlite.filters.Filter;
-	import airsqlite.interfaces.IDataPreposition;
 	import airsqlite.statement.FieldObject;
 	
 	/**
@@ -14,8 +13,8 @@ package airsqlite.statement.delegates
 		{
 			if(fields.length > 0)
 			{
-				var results:String = "SELECT * "+  
-									 "FROM "+tableName; 
+				var results:String = "SELECT * "+
+									 "FROM "+tableName;
 				
 				var fieldName:String;
 				var fieldFilter:Filter;
@@ -30,15 +29,15 @@ package airsqlite.statement.delegates
 					statement.parameters[fieldFilter.colonValue] = fieldFilter.value
 				}
 				
-				if(fields[1] != null)
+				for(var fieldPointer:int = 1; fields[fieldPointer]!=null; fieldPointer++)
 				{
-					var andObject:FieldObject 	= fields[1];
+					var andObject:FieldObject 	= fields[fieldPointer];
 					fieldName 					= andObject.field;
 					fieldFilter 				= andObject.condition as Filter;
 					
 					results += " AND "+fieldName+fieldFilter.operator+fieldFilter.colonValue;
 					statement.parameters[fieldFilter.colonValue] = fieldFilter.value;
-				} 
+				}
 				
 				statement.text = results;
 			}

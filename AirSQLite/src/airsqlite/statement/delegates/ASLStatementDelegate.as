@@ -20,13 +20,13 @@ package airsqlite.statement.delegates
 		public function constructStatement(statement:ASLStatement):void
 		{
 		}
-		
-		public function record(reference:*):IDataPreposition
+		// IDataNoun implementations
+		public function record(reference:*):IASLStatementDelegate
 		{
 			return this;
 		}
 		
-		public function field(field:String, condition:*):IDataPreposition
+		public function field(field:String, condition:*):IASLStatementDelegate
 		{			
 			fields.push(new FieldObject(field, condition));
 			

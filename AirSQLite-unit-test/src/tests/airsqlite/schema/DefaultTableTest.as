@@ -18,7 +18,7 @@ package tests.airsqlite.schema
 	
 	public class DefaultTableTest
 	{
-		private const TABLE_A:String = "tableA";
+		private const CHARACTERS:String = "Characters";
 
 		private var fixture:DefaultTable;	
 		
@@ -41,7 +41,7 @@ package tests.airsqlite.schema
 		{			
 			fixture = new DefaultTable();
 			
-			fixture.id = TABLE_A;
+			fixture.id = CHARACTERS;
 		}   
 		
 		[After]  
@@ -61,8 +61,8 @@ package tests.airsqlite.schema
 			
 			var result:IDataNoun = fixture.select();
 			
-			assertEquals((result as ASLStatement).tableName, TABLE_A);
-			assertEquals(fixture.id, TABLE_A);
+			assertEquals((result as ASLStatement).tableName, CHARACTERS);
+			assertEquals(fixture.id, CHARACTERS);
 		}
 		
 		[Test(order="2")]
@@ -76,8 +76,8 @@ package tests.airsqlite.schema
 			
 			var result:IDataNoun = fixture.create();
 			
-			assertEquals((result as ASLStatement).tableName, TABLE_A);
-			assertEquals(fixture.id, TABLE_A);
+			assertEquals((result as ASLStatement).tableName, CHARACTERS);
+			assertEquals(fixture.id, CHARACTERS);
 		}
 		
 		[Test(order="3")]
@@ -91,8 +91,8 @@ package tests.airsqlite.schema
 			
 			var result:IDataNoun = fixture.update();
 			
-			assertEquals((result as ASLStatement).tableName, TABLE_A);
-			assertEquals(fixture.id, TABLE_A);
+			assertEquals((result as ASLStatement).tableName, CHARACTERS);
+			assertEquals(fixture.id, CHARACTERS);
 		}
 		
 		[Test(order="4")]
@@ -106,8 +106,8 @@ package tests.airsqlite.schema
 			
 			var result:IDataNoun = fixture.remove();
 			
-			assertEquals((result as ASLStatement).tableName, TABLE_A);
-			assertEquals(fixture.id, TABLE_A);
+			assertEquals((result as ASLStatement).tableName, CHARACTERS);
+			assertEquals(fixture.id, CHARACTERS);
 		}
 	}
 }

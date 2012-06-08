@@ -1,6 +1,7 @@
 package airsqlite
 {
 	import airsqlite.core.DataManipulator;
+	import airsqlite.interfaces.IASLStatementDelegate;
 	import airsqlite.interfaces.IDataNoun;
 	import airsqlite.interfaces.IDataPreposition;
 	import airsqlite.statement.DataManipulationVerb;
@@ -74,12 +75,12 @@ package airsqlite
 		}
 		
 		// IDataNoun implementations
-		public function record(reference:*):IDataPreposition
+		public function record(reference:*):IASLStatementDelegate
 		{
 			return delegate.record(reference);
 		}
 		
-		public function field(field:String, condition:*):IDataPreposition
+		public function field(field:String, condition:*):IASLStatementDelegate
 		{
 			return delegate.field(field, condition);
 		}
