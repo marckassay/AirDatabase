@@ -66,15 +66,15 @@ package tests.airsqlite.schema
 		}
 		
 		[Test(order="2")]
-		public function testCreateMethodIsReturningAsExpected():void 
+		public function testInsertMethodIsReturningAsExpected():void 
 		{			
 			var statement:ASLStatement = new ASLStatement()
-			statement.manipulationVerb = DataManipulationVerb.CREATE;
-			mock(manipulator).method('create').args(null, null).returns( statement );
+			statement.manipulationVerb = DataManipulationVerb.INSERT;
+			mock(manipulator).method('insert').args(null, null).returns( statement );
 
 			fixture.asl_internal::manipulator = manipulator;
 			
-			var result:IDataNoun = fixture.create();
+			var result:IDataNoun = fixture.insert();
 			
 			assertEquals((result as ASLStatement).tableName, CHARACTERS);
 			assertEquals(fixture.id, CHARACTERS);

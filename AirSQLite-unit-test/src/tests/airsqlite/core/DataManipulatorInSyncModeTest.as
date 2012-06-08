@@ -50,16 +50,16 @@ package tests.airsqlite.core
 		}
 		
 		[Test]
-		public function testCreateMethodIsReturningAsExpected():void 
+		public function testInsertMethodIsReturningAsExpected():void 
 		{
 			var result:Function = function():void{};
 			var status:Function = function():void{};
 			
-			var statement:IDataNoun = fixture.create(result, status);
+			var statement:IDataNoun = fixture.insert(result, status);
 			
 			assertThat(statement, instanceOf(ASLStatement));
 			assertStrictlyEquals((statement as ASLStatement).manipulator, fixture);
-			assertEquals((statement as ASLStatement).manipulationVerb, DataManipulationVerb.CREATE);
+			assertEquals((statement as ASLStatement).manipulationVerb, DataManipulationVerb.INSERT);
 		}
 		
 		[Test]

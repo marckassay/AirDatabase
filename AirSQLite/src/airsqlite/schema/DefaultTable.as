@@ -26,9 +26,9 @@ package airsqlite.schema
 			return statement;
 		}
 		
-		override public function create(result:Function=null, status:Function=null):IDataNoun
+		override public function insert(result:Function=null, status:Function=null):IDataNoun
 		{
-			var statement:ASLStatement = manipulator.create(result, status) as ASLStatement;
+			var statement:ASLStatement = manipulator.insert(result, status) as ASLStatement;
 			statement.tableName = name;
 			return statement;
 		}

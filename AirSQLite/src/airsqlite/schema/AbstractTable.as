@@ -41,9 +41,9 @@ package airsqlite.schema
 			return;
 		}
 		
-		public function create(result:Function=null, status:Function=null):IDataNoun
+		public function insert(result:Function=null, status:Function=null):IDataNoun
 		{
-			throw new IllegalOperationError("AbstractTable's create() must be overridden by it's subclass.");
+			throw new IllegalOperationError("AbstractTable's insert() must be overridden by it's subclass.");
 			
 			return;
 		}

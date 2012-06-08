@@ -6,7 +6,7 @@ package airsqlite
 	import airsqlite.interfaces.IDataPreposition;
 	import airsqlite.statement.DataManipulationVerb;
 	import airsqlite.statement.delegates.ASLStatementDelegate;
-	import airsqlite.statement.delegates.CreateDelegate;
+	import airsqlite.statement.delegates.InsertDelegate;
 	import airsqlite.statement.delegates.RemoveDelegate;
 	import airsqlite.statement.delegates.SelectDelegate;
 	import airsqlite.statement.delegates.UpdateDelegate;
@@ -62,8 +62,8 @@ package airsqlite
 				case DataManipulationVerb.SELECT:
 					delegate = new SelectDelegate();
 					break;
-				case DataManipulationVerb.CREATE:
-					delegate = new CreateDelegate();
+				case DataManipulationVerb.INSERT:
+					delegate = new InsertDelegate();
 					break;
 				case DataManipulationVerb.UPDATE:
 					delegate = new UpdateDelegate();

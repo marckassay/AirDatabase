@@ -26,9 +26,9 @@ package airsqlite
 			return manipulator.select(result,status);
 		}
 		
-		public function create(result:Function=null, status:Function=null):IDataNoun
+		public function insert(result:Function=null, status:Function=null):IDataNoun
 		{
-			return manipulator.create(result,status);
+			return manipulator.insert(result,status);
 		}
 		
 		public function update(result:Function=null, status:Function=null):IDataNoun

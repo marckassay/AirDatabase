@@ -22,11 +22,11 @@ package airsqlite.core
 			return statement;
 		}
 
-		public function create(result:Function=null, status:Function=null):IDataNoun
+		public function insert(result:Function=null, status:Function=null):IDataNoun
 		{
 			var statement:ASLStatement = initializeStatement(result, status);
 			statement.manipulator 	   = this;
-			statement.manipulationVerb = DataManipulationVerb.CREATE;
+			statement.manipulationVerb = DataManipulationVerb.INSERT;
 			return statement;
 		}
 		

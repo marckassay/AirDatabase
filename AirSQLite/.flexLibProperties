@@ -24,7 +24,6 @@
     <classEntry path="airsqlite.filters.strings.contains"/>
     <classEntry path="airsqlite.filters.Filter"/>
     <classEntry path="airsqlite.statement.FieldObject"/>
-    <classEntry path="airsqlite.statement.delegates.CreateDelegate"/>
     <classEntry path="airsqlite.statement.delegates.UpdateDelegate"/>
     <classEntry path="airsqlite.statement.delegates.RemoveDelegate"/>
   </includeClasses>

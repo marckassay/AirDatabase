@@ -5,6 +5,7 @@ package
 	import tests.airsqlite.core.DataManipulatorInSyncModeTest;
 	import tests.airsqlite.core.TransactionQueueManagerTest;
 	import tests.airsqlite.schema.DefaultTableTest;
+	import tests.airsqlite.statement.InsertDelegateTest;
 	import tests.airsqlite.statement.SelectDelegateTest;
 
 
@@ -18,7 +19,8 @@ package
 		public var t4:DefaultTableTest;
 		
 		public var t5:SelectDelegateTest;
+		public var t6:InsertDelegateTest;
 		
-		public var t6:ASLStatementTest;
+		public var t7:ASLStatementTest;
 	}
 }
