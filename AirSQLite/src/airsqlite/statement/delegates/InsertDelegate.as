@@ -2,12 +2,20 @@ package airsqlite.statement.delegates
 {
 	import airsqlite.ASLStatement;
 	import airsqlite.errors.FilterError;
+	import airsqlite.errors.NotImplementedError;
 	import airsqlite.filters.Filter;
 	import airsqlite.interfaces.IASLStatementDelegate;
 	import airsqlite.statement.FieldObject;
 
 	public class InsertDelegate extends ASLStatementDelegate
 	{
+		override public function record(reference:*):IASLStatementDelegate
+		{
+			throw NotImplementedError.ERROR;
+			
+			super.record(reference);
+		}
+		
 		override public function field(field:String, condition:*):IASLStatementDelegate
 		{
 			if( (condition as Filter).filter != 'equals')

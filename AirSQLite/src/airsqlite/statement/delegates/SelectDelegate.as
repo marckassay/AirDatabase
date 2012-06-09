@@ -1,7 +1,9 @@
 package airsqlite.statement.delegates
 {
 	import airsqlite.ASLStatement;
+	import airsqlite.errors.NotImplementedError;
 	import airsqlite.filters.Filter;
+	import airsqlite.interfaces.IASLStatementDelegate;
 	import airsqlite.statement.FieldObject;
 	
 	/**
@@ -9,6 +11,23 @@ package airsqlite.statement.delegates
 	 */
 	public class SelectDelegate extends ASLStatementDelegate
 	{
+		override public function record(reference:*):IASLStatementDelegate
+		{
+			throw NotImplementedError.ERROR;
+			
+			super.record(reference);
+		}
+		
+		override public function field(field:String, condition:*):IASLStatementDelegate
+		{
+			if( (condition as Filter).filter != 'equals')
+			{
+				throw NotImplementedError.ERROR;
+			}
+			
+			return super.field(field, condition);
+		}
+		
 		override public function constructStatement(statement:ASLStatement):void
 		{
 			if(fields.length > 0)
