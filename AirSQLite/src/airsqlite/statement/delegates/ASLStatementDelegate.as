@@ -2,7 +2,6 @@ package airsqlite.statement.delegates
 {
 	import airsqlite.ASLStatement;
 	import airsqlite.interfaces.IASLStatementDelegate;
-	import airsqlite.interfaces.IDataPreposition;
 	import airsqlite.statement.FieldObject;
 	
 	public class ASLStatementDelegate implements IASLStatementDelegate
@@ -20,6 +19,7 @@ package airsqlite.statement.delegates
 		public function constructStatement(statement:ASLStatement):void
 		{
 		}
+		
 		// IDataNoun implementations
 		public function record(reference:*):IASLStatementDelegate
 		{

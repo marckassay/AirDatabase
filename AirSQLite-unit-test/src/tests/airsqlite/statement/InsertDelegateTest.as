@@ -1,6 +1,9 @@
 package tests.airsqlite.statement
 {
 	import airsqlite.ASLStatement;
+	import airsqlite.errors.FilterError;
+	import airsqlite.filters.equals;
+	import airsqlite.filters.numbers.greaterThan;
 	import airsqlite.statement.delegates.InsertDelegate;
 	
 	import org.flexunit.asserts.assertEquals;
@@ -24,17 +27,51 @@ package tests.airsqlite.statement
 			fixture = null;
 		}
 		
-		[Ignore]
+		
 		[Test]
-		public function testFieldInvocationConstructsColumnCorrectly():void 
+		public function testThatOneFieldInvocationConstructCorrectly():void 
 		{
-			//fixture.field('first').to(CHARACTERS);
+			fixture.field('first', equals('Dagny')).to(CHARACTERS);
 			
 			var statement:ASLStatement = new ASLStatement();
 			
 			fixture.constructStatement(statement);
 			
-			assertEquals("INSERT INTO Characters (first)", statement.text);
+			assertEquals("INSERT INTO Characters (first) VALUES ('Dagny')", statement.text);
+		}
+		
+		[Test]
+		public function testThatTwoFieldInvocationsConstructCorrectly():void 
+		{
+			fixture.field('first', equals('Dagny')).field('last', equals('Taggart')).to(CHARACTERS);
+			
+			var statement:ASLStatement = new ASLStatement();
+			
+			fixture.constructStatement(statement);
+			
+			assertEquals("INSERT INTO Characters (first, last) VALUES ('Dagny','Taggart')", statement.text);
+		}
+		
+		[Test]
+		public function testThatThreeFieldInvocationsConstructCorrectly():void 
+		{
+			fixture.field('first', equals('Dagny')).field('last', equals('Taggart')).field('password', equals('Abc123')).to(CHARACTERS);
+			
+			var statement:ASLStatement = new ASLStatement();
+			
+			fixture.constructStatement(statement);
+			
+			assertEquals("INSERT INTO Characters (first, last, password) VALUES ('Dagny','Taggart','Abc123')", statement.text);
+		}
+		
+		[Test(expects="airsqlite.errors.FilterError")]
+		public function testThatExceptionIsThrownForUnexpectedFilter():void
+		{
+			fixture.field('first', greaterThan(5)).to(CHARACTERS);
+			
+			var statement:ASLStatement = new ASLStatement();
+			
+			fixture.constructStatement(statement);
 		}
 	}
 }

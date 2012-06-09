@@ -1,9 +1,9 @@
 package airsqlite.filters.numbers
 {
-	public class greaterThan
+	import airsqlite.filters.Filter;
+
+	public function greaterThan(value:Number):Filter
 	{
-		public function greaterThan(value:Number)
-		{
-		}
+		return new Filter('greaterThan', ' > ', value);
 	}
 }

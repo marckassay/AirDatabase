@@ -26,6 +26,7 @@
     <classEntry path="airsqlite.statement.FieldObject"/>
     <classEntry path="airsqlite.statement.delegates.UpdateDelegate"/>
     <classEntry path="airsqlite.statement.delegates.RemoveDelegate"/>
+    <classEntry path="airsqlite.errors.FilterError"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>
