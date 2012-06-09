@@ -37,7 +37,8 @@ package tests.airsqlite.statement
 			
 			fixture.constructStatement(statement);
 			
-			assertEquals("INSERT INTO Characters (first) VALUES ('Dagny')", statement.text);
+			assertEquals("INSERT INTO Characters (first) VALUES (:first)", statement.text);
+			assertEquals(statement.parameters[':first'], 'Dagny');
 		}
 		
 		[Test]
@@ -49,7 +50,9 @@ package tests.airsqlite.statement
 			
 			fixture.constructStatement(statement);
 			
-			assertEquals("INSERT INTO Characters (first, last) VALUES ('Dagny','Taggart')", statement.text);
+			assertEquals("INSERT INTO Characters (first, last) VALUES (:first, :last)", statement.text);
+			assertEquals(statement.parameters[':first'], 'Dagny');
+			assertEquals(statement.parameters[':last'], 'Taggart');
 		}
 		
 		[Test]
@@ -61,7 +64,10 @@ package tests.airsqlite.statement
 			
 			fixture.constructStatement(statement);
 			
-			assertEquals("INSERT INTO Characters (first, last, password) VALUES ('Dagny','Taggart','Abc123')", statement.text);
+			assertEquals("INSERT INTO Characters (first, last, password) VALUES (:first, :last, :password)", statement.text);
+			assertEquals(statement.parameters[':first'], 'Dagny');
+			assertEquals(statement.parameters[':last'], 'Taggart');
+			assertEquals(statement.parameters[':password'], 'Abc123');
 		}
 		
 		[Test(expects="airsqlite.errors.FilterError")]

@@ -27,5 +27,10 @@ package airsqlite.interfaces
 	 	 * </code>
 		 */
 		function field(field:String, condition:*):IASLStatementDelegate
+		
+		/**
+		 * 
+		 */
+		function where():IASLStatementDelegate
 	}
 }

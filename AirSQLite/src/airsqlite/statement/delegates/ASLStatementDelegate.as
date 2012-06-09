@@ -10,10 +10,12 @@ package airsqlite.statement.delegates
 		
 		protected var fields:Array;
 		
+		protected var hasWhereBeenCalled:Boolean;
 		
 		public function ASLStatementDelegate()
 		{
-			fields = new Array();	
+			fields = new Array();
+			hasWhereBeenCalled = false;
 		}
 		
 		public function constructStatement(statement:ASLStatement):void
@@ -29,6 +31,13 @@ package airsqlite.statement.delegates
 		public function field(field:String, condition:*):IASLStatementDelegate
 		{			
 			fields.push(new FieldObject(field, condition));
+			
+			return this;
+		}
+		
+		public function where():IASLStatementDelegate
+		{
+			hasWhereBeenCalled = true;
 			
 			return this;
 		}

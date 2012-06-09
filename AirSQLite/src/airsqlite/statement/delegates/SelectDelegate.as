@@ -44,8 +44,8 @@ package airsqlite.statement.delegates
 					fieldName 					= whereObject.field;
 					fieldFilter 				= whereObject.condition as Filter;
 					
-					results += " WHERE "+fieldName+fieldFilter.operator+fieldFilter.colonValue;
-					statement.parameters[fieldFilter.colonValue] = fieldFilter.value
+					results += " WHERE "+fieldName+fieldFilter.operator+whereObject.colonField;
+					statement.parameters[whereObject.colonField] = fieldFilter.value
 				}
 				
 				for(var fieldPointer:int = 1; fields[fieldPointer]!=null; fieldPointer++)
@@ -54,8 +54,8 @@ package airsqlite.statement.delegates
 					fieldName 					= andObject.field;
 					fieldFilter 				= andObject.condition as Filter;
 					
-					results += " AND "+fieldName+fieldFilter.operator+fieldFilter.colonValue;
-					statement.parameters[fieldFilter.colonValue] = fieldFilter.value;
+					results += " AND "+fieldName+fieldFilter.operator+andObject.colonField;
+					statement.parameters[andObject.colonField] = fieldFilter.value;
 				}
 				
 				statement.text = results;

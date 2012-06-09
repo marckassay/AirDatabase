@@ -85,6 +85,11 @@ package airsqlite
 			return delegate.field(field, condition);
 		}
 		
+		public function where():IASLStatementDelegate
+		{
+			return delegate.where();
+		}
+		
 		// IDataPreposition implementations
 		public function from(tableName:String):*
 		{			

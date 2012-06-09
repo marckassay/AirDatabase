@@ -34,7 +34,8 @@ package tests.airsqlite.statement
 			
 			fixture.constructStatement(statement);
 			
-			assertEquals("SELECT * FROM Characters WHERE first = :Dagny", statement.text);
+			assertEquals("SELECT * FROM Characters WHERE first = :first", statement.text);
+			assertEquals(statement.parameters[':first'], 'Dagny');
 		}
 		
 		[Test]
@@ -46,7 +47,9 @@ package tests.airsqlite.statement
 			
 			fixture.constructStatement(statement);
 			
-			assertEquals("SELECT * FROM Characters WHERE first = :Dagny AND last = :Taggart", statement.text);
+			assertEquals("SELECT * FROM Characters WHERE first = :first AND last = :last", statement.text);
+			assertEquals(statement.parameters[':first'], 'Dagny');
+			assertEquals(statement.parameters[':last'], 'Taggart');
 		}
 		
 		[Test]
@@ -58,7 +61,10 @@ package tests.airsqlite.statement
 			
 			fixture.constructStatement(statement);
 			
-			assertEquals("SELECT * FROM Characters WHERE first = :Dagny AND middle = :Zino AND last = :Taggart", statement.text);
+			assertEquals("SELECT * FROM Characters WHERE first = :first AND middle = :middle AND last = :last", statement.text);
+			assertEquals(statement.parameters[':first'], 'Dagny');
+			assertEquals(statement.parameters[':last'], 'Taggart');
+			assertEquals(statement.parameters[':middle'], 'Zino');
 		}
 	}
 }

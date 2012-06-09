@@ -43,8 +43,10 @@ package airsqlite.statement.delegates
 					fieldName					= field.field;
 					fieldFilter					= field.condition as Filter;
 					
-					columnData	+= fieldName+", ";
-					valueData	+= "'"+(fieldFilter.value as String)+"',";
+					columnData	+= fieldName+", ";	
+					valueData	+= field.colonField+", ";
+					
+					statement.parameters[field.colonField] = fieldFilter.value;
 				}
 				
 				// remove the last comma and replace it with a right parenthesis...
