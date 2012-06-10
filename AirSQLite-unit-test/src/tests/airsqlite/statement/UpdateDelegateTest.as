@@ -30,13 +30,15 @@ package tests.airsqlite.statement
 		[Test]
 		public function testThatOneFieldInvocationConstructCorrectly():void 
 		{
-			fixture.field('first', equals('Dagny')).to(CHARACTERS);
+			fixture.field('first', equals('Dagny')).where().field('last', equals('Taggart')).to(CHARACTERS);
 			
 			var statement:ASLStatement = new ASLStatement();
 			
 			fixture.constructStatement(statement);
 			
-			assertEquals("INSERT INTO Characters (first) VALUES ('Dagny')", statement.text);
+			assertEquals("UPDATE Characters SET first = :first WHERE last = :last", statement.text);
+			assertEquals(statement.parameters[':first'], 'Dagny');
+			assertEquals(statement.parameters[':last'], 'Taggart');
 		}
 	}
 }

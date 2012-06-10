@@ -4,8 +4,10 @@ package airsqlite.statement.delegates
 	import airsqlite.interfaces.IASLStatementDelegate;
 	import airsqlite.statement.FieldObject;
 	
+	import flash.errors.IllegalOperationError;
+	
 	public class ASLStatementDelegate implements IASLStatementDelegate
-	{		
+	{	
 		private var _tableName:String;
 		
 		protected var fields:Array;
@@ -20,6 +22,7 @@ package airsqlite.statement.delegates
 		
 		public function constructStatement(statement:ASLStatement):void
 		{
+			throw new IllegalOperationError("ASLStatementDelegate's constructStatement() must be overridden by it's subclass.");
 		}
 		
 		// IDataNoun implementations
@@ -29,7 +32,7 @@ package airsqlite.statement.delegates
 		}
 		
 		public function field(field:String, condition:*):IASLStatementDelegate
-		{			
+		{
 			fields.push(new FieldObject(field, condition));
 			
 			return this;
@@ -44,12 +47,12 @@ package airsqlite.statement.delegates
 		
 		// IDataPreposition implementations
 		public function from(tableName:String):*
-		{			
+		{
 			this.tableName = tableName;
 		}
 		
 		public function to(tableName:String):*
-		{				
+		{
 			this.tableName = tableName;
 		}
 		

@@ -1,7 +1,6 @@
 package airsqlite.statement.delegates
 {
 	import airsqlite.ASLStatement;
-	import airsqlite.errors.FilterError;
 	import airsqlite.errors.NotImplementedError;
 	import airsqlite.filters.Filter;
 	import airsqlite.interfaces.IASLStatementDelegate;
@@ -28,37 +27,35 @@ package airsqlite.statement.delegates
 		
 		override public function constructStatement(statement:ASLStatement):void
 		{
-			if(hasWhereBeenCalled == false)
+			//if(hasWhereBeenCalled == false)
+				// TODO: throw StatementSyntaxError
+				
+			// if we dont got a pair of fields...
+			//if(fields.length == 2)
 				// TODO: throw StatementSyntaxError
 			
-			if(fields.length > 0)
-			{
-				var results:String		= "UPDATE "+tableName;
-				var columnData:String 	= " (";
-				var valueData:String 	= " VALUES (";
-				
-				var fieldName:String;
-				var fieldFilter:Filter;
-				
-				for(var fieldPointer:int = 0; fields[fieldPointer]!=null; fieldPointer++)
-				{
-					var field:FieldObject		= fields[fieldPointer];
-					fieldName					= field.field;
-					fieldFilter					= field.condition as Filter;
-					
-					columnData	+= fieldName+", ";
-					valueData	+= "'"+(fieldFilter.value as String)+"',";
-				}
-				
-				// remove the last comma and replace it with a right parenthesis...
-				columnData = columnData.replace( /[\, ]+$/, ')');
-				valueData = valueData.replace( /[\, ]+$/, ')');
-				
-				results += columnData;
-				results += valueData;
-				
-				statement.text = results;
-			}
+			var results:String				= "UPDATE "+tableName;
+			var setData:String				= " SET ";
+			var whereData:String			= " WHERE ";
+			
+			
+			var setField:FieldObject		= fields[0];
+			var setFieldName:String			= setField.field;
+			var setFieldFilter:Filter		= setField.condition as Filter;
+			
+			var whereField:FieldObject		= fields[1];
+			var whereFieldName:String		= whereField.field;
+			var whereFieldFilter:Filter		= whereField.condition as Filter;
+			
+			setData += setFieldName+setFieldFilter.operator+setField.colonField;
+			statement.parameters[setField.colonField] = setFieldFilter.value;
+			
+			whereData += whereFieldName+whereFieldFilter.operator+whereField.colonField;
+			statement.parameters[whereField.colonField] = whereFieldFilter.value;
+			
+			results += setData + whereData;
+			
+			statement.text = results;
 		}
 	}
 }
