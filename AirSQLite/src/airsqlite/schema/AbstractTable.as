@@ -1,16 +1,24 @@
 package airsqlite.schema
 {
 	import airsqlite.core.DataSender;
-	import airsqlite.interfaces.ICRUDOperator;
+	import airsqlite.core.asl_internal;
+	import airsqlite.interfaces.IDataVerb;
 	import airsqlite.interfaces.IDataColumn;
+	import airsqlite.interfaces.IDataNoun;
 	
 	import flash.errors.IllegalOperationError;
 	
 	import mx.utils.UIDUtil;
 
-	public class AbstractTable implements ICRUDOperator
+	public class AbstractTable implements IDataVerb
 	{
-		public static const DEFAULT_TABLE:String = "https://github.com/marckassay/airsqlite/default";
+		/**
+		 * This is to be as an alias to the first (or in some cases, only) table created.
+		 * It can be accessed without using the AirSQLite <code>table</code> method.
+		 * 
+		 * @see airsqlite.AirSQLite#table()
+		 */
+		asl_internal static const DEFAULT_TABLE:String = "https://github.com/marckassay/airsqlite/default";
 		
 		private var _id:String;
 		
@@ -26,30 +34,30 @@ package airsqlite.schema
 			_sender = DataSender.getInstance();
 		}
 		
-		public function select(...params):*
+		public function select(result:Function=null, status:Function=null):IDataNoun
 		{
 			throw new IllegalOperationError("AbstractTable's select() must be overridden by it's subclass.");
 			
 			return;
 		}
 		
-		public function create(...params):*
+		public function insert(result:Function=null, status:Function=null):IDataNoun
 		{
-			throw new IllegalOperationError("AbstractTable's create() must be overridden by it's subclass.");
+			throw new IllegalOperationError("AbstractTable's insert() must be overridden by it's subclass.");
 			
 			return;
 		}
 		
-		public function update(...params):*
+		public function update(result:Function=null, status:Function=null):IDataNoun
 		{
 			throw new IllegalOperationError("AbstractTable's update() must be overridden by it's subclass.");
 			
 			return;
 		}
 		
-		public function del(...params):*
+		public function remove(result:Function=null, status:Function=null):IDataNoun
 		{
-			throw new IllegalOperationError("AbstractTable's del() must be overridden by it's subclass.");
+			throw new IllegalOperationError("AbstractTable's remove() must be overridden by it's subclass.");
 			
 			return;
 		}

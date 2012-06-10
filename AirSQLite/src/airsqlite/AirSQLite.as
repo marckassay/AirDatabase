@@ -1,54 +1,44 @@
 package airsqlite
 {
-	import airsqlite.interfaces.ICRUDOperator;
-	import airsqlite.schema.AbstractTable;
+	import airsqlite.core.DataManipulator;
+	import airsqlite.core.asl_internal;
+	import airsqlite.interfaces.IDataVerb;
+	import airsqlite.interfaces.IDataNoun;
 	
-	import flash.events.EventDispatcher;
-	import airsqlite.core.CRUDOperator;
-	import airsqlite.core.DataSender;
+	use namespace asl_internal;
 	
-	public class AirSQLite extends EventDispatcher implements ICRUDOperator
+	public class AirSQLite implements IDataVerb
 	{		
 		private var _config:ASLConfig;
 
-		private var operator:CRUDOperator;
+		private var manipulator:DataManipulator;
 		
-		private var sender:DataSender;
 		
 		/**
 		 * Constructor is arguments are closed for MXML component implementation.
 		 */
 		public function AirSQLite()
 		{
-			sender = DataSender.getInstance();
 		}
 		
-		public function select(...params):*
+		public function select(result:Function=null, status:Function=null):IDataNoun
 		{
-			return table().select(params);
+			return manipulator.select(result,status);
 		}
 		
-		public function create(...params):*
+		public function insert(result:Function=null, status:Function=null):IDataNoun
 		{
-			return table().create(params);
+			return manipulator.insert(result,status);
 		}
 		
-		public function update(...params):*
+		public function update(result:Function=null, status:Function=null):IDataNoun
 		{
-			return table().update(params);
+			return manipulator.update(result,status);
 		}
 		
-		public function del(...params):*
+		public function remove(result:Function=null, status:Function=null):IDataNoun
 		{
-			return table().del(params);			
-		}
-		
-		public function table(name:String=null):ICRUDOperator
-		{
-			if(name == null)
-				name = AbstractTable.DEFAULT_TABLE;
-			
-			return operator.tables[name];
+			return manipulator.remove(result,status);
 		}
 		
 		
@@ -60,7 +50,7 @@ package airsqlite
 		{
 			_config = value;
 			
-			operator = new CRUDOperator(value);
+			manipulator = new DataManipulator(value);
 		}
 	}
 }

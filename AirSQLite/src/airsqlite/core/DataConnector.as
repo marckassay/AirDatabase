@@ -11,6 +11,8 @@ package airsqlite.core
 	import flash.filesystem.File;
 	import flash.utils.Dictionary;
 	
+	use namespace asl_internal;
+	
 	[ExcludeClass]
 	public class DataConnector
 	{
@@ -176,8 +178,8 @@ package airsqlite.core
 		}
 		
 		/**
-		 * Instanitates an <code>ASLStatement</code> instance and assigns the <code>sql</code>
-		 * field to it.
+		 * Instanitates an <code>ASLStatement</code> instance and assigns the <code>connector</code>
+		 * field to this class.
 		 * 
 		 * @param result a responder function to be called when the statement has been executed successfully.
 		 * @param status a responder function to be called when the statement has been failed from execution.

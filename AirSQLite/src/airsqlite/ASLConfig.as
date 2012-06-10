@@ -1,6 +1,7 @@
 package airsqlite
 {
-	import airsqlite.interfaces.ICRUDOperator;
+	import airsqlite.filters.strings.contains;
+	import airsqlite.interfaces.IDataVerb;
 	import airsqlite.schema.DefaultTable;
 	
 	import flash.filesystem.File;
@@ -14,7 +15,7 @@ package airsqlite
 		
 		private var _asyncConnection:Boolean;
 				
-		private var _tables:Vector.<ICRUDOperator>;
+		private var _tables:Vector.<IDataVerb>;
 		
 		/**
 		 * Constructor's arguments are closed for MXML component implementation.
@@ -36,11 +37,11 @@ package airsqlite
 		}
 		
 		
-		public function get tables():Vector.<ICRUDOperator>
+		public function get tables():Vector.<IDataVerb>
 		{
 			return _tables;
 		}
-		public function set tables(value:Vector.<ICRUDOperator>):void
+		public function set tables(value:Vector.<IDataVerb>):void
 		{
 			_tables = value;
 		}

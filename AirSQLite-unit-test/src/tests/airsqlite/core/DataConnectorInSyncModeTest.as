@@ -4,8 +4,8 @@ package tests.airsqlite.core
 	import airsqlite.ASLStatement;
 	import airsqlite.core.DataConnector;
 	import airsqlite.core.asl_unit_testing;
-	import airsqlite.interfaces.ICRUDOperator;
 	import airsqlite.interfaces.IDataColumn;
+	import airsqlite.interfaces.IDataVerb;
 	import airsqlite.schema.DataTypes;
 	import airsqlite.schema.DefaultColumn;
 	import airsqlite.schema.DefaultTable;
@@ -23,7 +23,7 @@ package tests.airsqlite.core
 	{
 		private const DATA_BASE_FILE:String = "testing.db";
 		
-		private const TABLE_A:String 	= "tableA";
+		private const CHARACTERS:String = "Characters";
 		private const KEY:String 		= "key";
 		private const NAME:String 		= "name";
 		
@@ -52,7 +52,7 @@ package tests.airsqlite.core
 		public function testThatDataBaseFileHasBeenWrittenToDisk():void 
 		{			
 			var statement:ASLStatement = fixture.testInitializeStatement();
-			statement.text = "SELECT key FROM tableA";
+			statement.text = "SELECT key FROM Characters";
 			
 			fixture.testProcessStatement(statement);
 			
@@ -63,11 +63,11 @@ package tests.airsqlite.core
 		public function testInsertAndSelectOperations():void 
 		{
 			var insertStatement:ASLStatement = fixture.testInitializeStatement();
-			insertStatement.text = "INSERT INTO tableA (key, name) VALUES (3, 'Dagny Taggart')";
+			insertStatement.text = "INSERT INTO Characters (key, name) VALUES (3, 'Dagny Taggart')";
 			fixture.testProcessStatement(insertStatement);
 			
 			var selectStatement:ASLStatement = fixture.testInitializeStatement();
-			selectStatement.text = "SELECT name FROM tableA WHERE key='3'";
+			selectStatement.text = "SELECT name FROM Characters WHERE key='3'";
 			var results:SQLResult = fixture.testProcessStatement(selectStatement);
 			var name:String = results.data[0].name;
 			
@@ -92,11 +92,11 @@ package tests.airsqlite.core
 			}
 		}
 		
-		private function get tables():Vector.<ICRUDOperator>
+		private function get tables():Vector.<IDataVerb>
 		{
-			var _tables:Vector.<ICRUDOperator> 	= new Vector.<ICRUDOperator>();
-			var tableA:DefaultTable 			= new DefaultTable();
-			tableA.id 							= TABLE_A;
+			var _tables:Vector.<IDataVerb> 		= new Vector.<IDataVerb>();
+			var characters:DefaultTable 		= new DefaultTable();
+			characters.id 						= CHARACTERS;
 			
 			var columns:Vector.<IDataColumn> 	= new Vector.<IDataColumn>();
 			var columnA:DefaultColumn			= new DefaultColumn();
@@ -109,8 +109,8 @@ package tests.airsqlite.core
 			columnB.dataType 					= DataTypes.TEXT.value;
 			columns.push(columnB);
 			
-			tableA.columns = columns;
-			_tables.push(tableA);
+			characters.columns = columns;
+			_tables.push(characters);
 			
 			return _tables;
 		}
