@@ -6,6 +6,7 @@ package
 	import tests.airsqlite.core.TransactionQueueManagerTest;
 	import tests.airsqlite.schema.DefaultTableTest;
 	import tests.airsqlite.statement.InsertDelegateTest;
+	import tests.airsqlite.statement.RemoveDelegateTest;
 	import tests.airsqlite.statement.SelectDelegateTest;
 	import tests.airsqlite.statement.UpdateDelegateTest;
 
@@ -22,7 +23,8 @@ package
 		public var t5:SelectDelegateTest;
 		public var t6:InsertDelegateTest;
 		public var t7:UpdateDelegateTest;
+		public var t8:RemoveDelegateTest;
 		
-		public var t8:ASLStatementTest;
+		public var t9:ASLStatementTest;
 	}
 }
