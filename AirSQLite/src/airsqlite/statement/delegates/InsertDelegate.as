@@ -1,26 +1,26 @@
 package airsqlite.statement.delegates
 {
 	import airsqlite.ASLStatement;
-	import airsqlite.errors.FilterError;
-	import airsqlite.errors.NotImplementedError;
 	import airsqlite.filters.Filter;
 	import airsqlite.interfaces.IASLStatementDelegate;
 	import airsqlite.statement.FieldObject;
-
+	
 	public class InsertDelegate extends ASLStatementDelegate
 	{
 		override public function record(reference:*):IASLStatementDelegate
 		{
-			throw NotImplementedError.ERROR;
+			//throw NotImplementedError.ERROR;
 			
 			super.record(reference);
+			
+			return null;
 		}
 		
 		override public function field(field:String, condition:*):IASLStatementDelegate
 		{
 			if( (condition as Filter).filter != 'equals')
 			{
-				throw FilterError.INCORRECT_FILTER;
+				//throw FilterError.INCORRECT_FILTER;
 			}
 			
 			return super.field(field, condition);
@@ -55,7 +55,7 @@ package airsqlite.statement.delegates
 				
 				results += columnData;
 				results += valueData;
-
+				
 				statement.text = results;
 			}
 		}

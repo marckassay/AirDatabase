@@ -16,22 +16,22 @@ package tests.airsqlite.core
 	public class DataManipulatorInSyncModeTest
 	{
 		private const DATA_BASE_FILE:String = "testing.db";
-
-		private var fixture:DataManipulator;		
+	
+		private var fixture:DataManipulator;
 		
 		[Before]
 		public function runBeforeEveryTest():void 
-		{			
+		{
 			var config:ASLConfig = new ASLConfig();
 			config.asyncConnection 	 = false;
-			config.uri 				 = DATA_BASE_FILE;
+			config.uri				 = DATA_BASE_FILE;
 			
 			fixture = new DataManipulator(config);
-		}   
+		}
 		
 		[After]  
 		public function runAfterEveryTest():void 
-		{  			
+		{
 			fixture = null;  
 		}
 		

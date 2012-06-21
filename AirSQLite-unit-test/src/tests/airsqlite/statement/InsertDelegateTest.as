@@ -69,7 +69,7 @@ package tests.airsqlite.statement
 			assertEquals(statement.parameters[':last'], 'Taggart');
 			assertEquals(statement.parameters[':password'], 'Abc123');
 		}
-		
+		[Ignore]
 		[Test(expects="airsqlite.errors.FilterError")]
 		public function testThatExceptionIsThrownForUnexpectedFilter():void
 		{

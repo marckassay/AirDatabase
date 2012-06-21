@@ -4,6 +4,7 @@ package
 	import tests.airsqlite.core.DataConnectorInSyncModeTest;
 	import tests.airsqlite.core.DataManipulatorInSyncModeTest;
 	import tests.airsqlite.core.TransactionQueueManagerTest;
+	import tests.airsqlite.errors.ThrowErrorTest;
 	import tests.airsqlite.schema.DefaultTableTest;
 	import tests.airsqlite.statement.InsertDelegateTest;
 	import tests.airsqlite.statement.RemoveDelegateTest;
@@ -26,5 +27,7 @@ package
 		public var t8:RemoveDelegateTest;
 		
 		public var t9:ASLStatementTest;
+		
+		public var t10:ThrowErrorTest;
 	}
 }

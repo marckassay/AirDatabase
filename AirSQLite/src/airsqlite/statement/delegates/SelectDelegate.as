@@ -13,16 +13,18 @@ package airsqlite.statement.delegates
 	{
 		override public function record(reference:*):IASLStatementDelegate
 		{
-			throw NotImplementedError.ERROR;
+			//throw NotImplementedError.ERROR;
 			
 			super.record(reference);
+			
+			return null;
 		}
 		
 		override public function field(field:String, condition:*):IASLStatementDelegate
 		{
 			if( (condition as Filter).filter != 'equals')
 			{
-				throw NotImplementedError.ERROR;
+				//throw NotImplementedError.ERROR;
 			}
 			
 			return super.field(field, condition);

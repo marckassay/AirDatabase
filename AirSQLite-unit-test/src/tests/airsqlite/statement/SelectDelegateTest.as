@@ -5,9 +5,9 @@ package tests.airsqlite.statement
 	import airsqlite.statement.delegates.SelectDelegate;
 	
 	import org.flexunit.asserts.assertEquals;
-
+	
 	public class SelectDelegateTest
-	{		
+	{
 		private const CHARACTERS:String = "Characters";
 		
 		private var fixture:SelectDelegate;	
@@ -15,14 +15,14 @@ package tests.airsqlite.statement
 		
 		[Before]
 		public function runBeforeEveryTest():void 
-		{			
+		{
 			fixture = new SelectDelegate();
 		}
 		
 		[After]
 		public function runAfterEveryTest():void 
-		{   			
-			fixture = null;  
+		{
+			fixture = null;
 		}
 		
 		[Test]

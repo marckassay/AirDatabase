@@ -29,6 +29,17 @@
     <classEntry path="airsqlite.errors.FilterError"/>
     <classEntry path="airsqlite.errors.NotImplementedError"/>
     <classEntry path="airsqlite.errors.messages.StatementSyntaxMessage"/>
+    <classEntry path="airsqlite.errors.IllegalStatementError"/>
+    <classEntry path="airsqlite.errors.messages.BaseErrorMessage"/>
+    <classEntry path="airsqlite.errors.messages.IErrorMessage"/>
+    <classEntry path="airsqlite.errors.messages.FilterErrorMessage"/>
+    <classEntry path="airsqlite.errors.messages.NotImplementedErrorMessage"/>
+    <classEntry path="airsqlite.errors.AbstractErrorCreator"/>
+    <classEntry path="airsqlite.errors.ErrorCreator"/>
+    <classEntry path="airsqlite.errors.IError"/>
+    <classEntry path="asx.string.replaceTokens"/>
+    <classEntry path="airsqlite.errors.throwError"/>
+    <classEntry path="airsqlite.errors.messages.IllegalStatementErrorMessage"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

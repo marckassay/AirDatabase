@@ -1,12 +1,12 @@
 package airsqlite.errors
 {
-	public class FilterError extends Error
+	import airsqlite.errors.messages.IErrorMessage;
+	
+	public class FilterError extends Error implements IError
 	{
-		public static var INCORRECT_FILTER:FilterError = new FilterError("The field method contains an unexpected filter with the name of ",10);
-		
-		public function FilterError(message:*="", id:*=0)
+		public function FilterError(description:String, id:int)
 		{
-			super(message, id);
+			super(description, id);
 		}
 	}
 }

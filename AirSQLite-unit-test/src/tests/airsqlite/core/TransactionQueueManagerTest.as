@@ -36,21 +36,21 @@ package tests.airsqlite.core
 		
 		[Before]
 		public function runBeforeEveryTest():void 
-		{   
+		{
 			fixture = new TransactionQueueManager();
-		}   
+		}
 		
-		[After]  
+		[After]
 		public function runAfterEveryTest():void 
-		{   
-			fixture = null;  
-		} 
-				
+		{
+			fixture = null;
+		}
+		
 		[Test]
 		public function testForQueuedTransactionsLengthBecomesZero():void 
-		{			
+		{
 			generateStatements(10);	
-
+			
 			mock(connector).method('executeStatement').args( instanceOf(ASLStatement) ).callsWithInvocation(function(invocation:Invocation):void 
 			{
 				fixture.processNextQueuedTransaction();

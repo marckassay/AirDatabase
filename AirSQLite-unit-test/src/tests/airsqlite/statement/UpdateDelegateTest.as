@@ -28,7 +28,7 @@ package tests.airsqlite.statement
 		
 		
 		[Test]
-		public function testThatOneFieldInvocationConstructCorrectly():void 
+		public function testThatOneFieldInvocationConstructedCorrectly():void 
 		{
 			fixture.field('first', equals('Dagny')).where().field('last', equals('Taggart')).to(CHARACTERS);
 			
