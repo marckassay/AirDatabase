@@ -2,8 +2,8 @@ package airsqlite.errors
 {
 	import airsqlite.errors.messages.IErrorMessage;
 	
-	public function throwError(message:IErrorMessage, data:Object):Error
+	public function throwError(message:IErrorMessage, data:Object):void
 	{
-		return ErrorCreator.getInstance().throwError(message, data);
+		throw ErrorCreator.getInstance().throwError(message, data);
 	}
 }

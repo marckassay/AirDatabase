@@ -4,14 +4,15 @@ package
 	import tests.airsqlite.core.DataConnectorInSyncModeTest;
 	import tests.airsqlite.core.DataManipulatorInSyncModeTest;
 	import tests.airsqlite.core.TransactionQueueManagerTest;
+	import tests.airsqlite.errors.ErrorCreatorTest;
 	import tests.airsqlite.errors.ThrowErrorTest;
 	import tests.airsqlite.schema.DefaultTableTest;
 	import tests.airsqlite.statement.InsertDelegateTest;
 	import tests.airsqlite.statement.RemoveDelegateTest;
 	import tests.airsqlite.statement.SelectDelegateTest;
 	import tests.airsqlite.statement.UpdateDelegateTest;
-
-
+	
+	
 	[Suite]
 	[RunWith("org.flexunit.runners.Suite")]	
 	public class Suite 
@@ -29,5 +30,6 @@ package
 		public var t9:ASLStatementTest;
 		
 		public var t10:ThrowErrorTest;
+		public var t11:ErrorCreatorTest;
 	}
 }

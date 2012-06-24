@@ -1,5 +1,6 @@
 package airsqlite.errors
 {
+	import airsqlite.core.asl_unit_testing;
 	import airsqlite.errors.messages.FilterErrorMessage;
 	import airsqlite.errors.messages.IErrorMessage;
 	import airsqlite.errors.messages.NotImplementedErrorMessage;
@@ -7,6 +8,8 @@ package airsqlite.errors
 	import asx.string.replaceTokens;
 	
 	import flash.utils.getQualifiedClassName;
+	
+	use namespace asl_unit_testing;
 	
 	[ExcludeClass]
 	public class ErrorCreator extends AbstractErrorCreator
@@ -42,6 +45,16 @@ package airsqlite.errors
 		}
 		
 		private function replaceTokensWithData(message:IErrorMessage, data:Object):String
+		{
+			return replaceTokens(message.message, data);
+		}
+		
+		asl_unit_testing function testConstructError(message:IErrorMessage, data:Object=null):IError
+		{
+			return constructError(message, data);
+		}
+		
+		asl_unit_testing function testReplaceTokensWithData(message:IErrorMessage, data:Object):String
 		{
 			return replaceTokens(message.message, data);
 		}
