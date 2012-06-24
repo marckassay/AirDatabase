@@ -40,6 +40,7 @@
     <classEntry path="asx.string.replaceTokens"/>
     <classEntry path="airsqlite.errors.throwError"/>
     <classEntry path="airsqlite.errors.messages.IllegalStatementErrorMessage"/>
+    <classEntry path="airsqlite.errors.messages.ErrorID"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

@@ -1,7 +1,6 @@
 package tests.airsqlite.statement
 {
 	import airsqlite.ASLStatement;
-	import airsqlite.errors.FilterError;
 	import airsqlite.filters.equals;
 	import airsqlite.filters.numbers.greaterThan;
 	import airsqlite.statement.delegates.InsertDelegate;
@@ -69,11 +68,21 @@ package tests.airsqlite.statement
 			assertEquals(statement.parameters[':last'], 'Taggart');
 			assertEquals(statement.parameters[':password'], 'Abc123');
 		}
-		[Ignore]
+		
 		[Test(expects="airsqlite.errors.FilterError")]
 		public function testThatExceptionIsThrownForUnexpectedFilter():void
 		{
 			fixture.field('first', greaterThan(5)).to(CHARACTERS);
+			
+			var statement:ASLStatement = new ASLStatement();
+			
+			fixture.constructStatement(statement);
+		}
+		
+		[Test(expects="airsqlite.errors.NotImplementedError")]
+		public function testThatExceptionIsNotImplemented():void
+		{
+			fixture.record({}).to(CHARACTERS);
 			
 			var statement:ASLStatement = new ASLStatement();
 			

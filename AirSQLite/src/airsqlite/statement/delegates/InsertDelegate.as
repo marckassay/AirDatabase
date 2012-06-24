@@ -1,6 +1,9 @@
 package airsqlite.statement.delegates
 {
 	import airsqlite.ASLStatement;
+	import airsqlite.errors.messages.FilterErrorMessage;
+	import airsqlite.errors.messages.NotImplementedErrorMessage;
+	import airsqlite.errors.throwError;
 	import airsqlite.filters.Filter;
 	import airsqlite.interfaces.IASLStatementDelegate;
 	import airsqlite.statement.FieldObject;
@@ -9,7 +12,7 @@ package airsqlite.statement.delegates
 	{
 		override public function record(reference:*):IASLStatementDelegate
 		{
-			//throw NotImplementedError.ERROR;
+			throwError( NotImplementedErrorMessage.ERROR );
 			
 			super.record(reference);
 			
@@ -20,7 +23,7 @@ package airsqlite.statement.delegates
 		{
 			if( (condition as Filter).filter != 'equals')
 			{
-				//throw FilterError.INCORRECT_FILTER;
+				throwError(FilterErrorMessage.INCORRECT_FILTER, {nameOfFilter: (condition as Filter).filter});
 			}
 			
 			return super.field(field, condition);

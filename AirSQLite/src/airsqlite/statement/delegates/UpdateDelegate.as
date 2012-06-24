@@ -1,7 +1,9 @@
 package airsqlite.statement.delegates
 {
 	import airsqlite.ASLStatement;
-	import airsqlite.errors.NotImplementedError;
+	import airsqlite.errors.messages.FilterErrorMessage;
+	import airsqlite.errors.messages.NotImplementedErrorMessage;
+	import airsqlite.errors.throwError;
 	import airsqlite.filters.Filter;
 	import airsqlite.interfaces.IASLStatementDelegate;
 	import airsqlite.statement.FieldObject;
@@ -10,7 +12,7 @@ package airsqlite.statement.delegates
 	{
 		override public function record(reference:*):IASLStatementDelegate
 		{
-			//throw NotImplementedError.ERROR;
+			throwError( NotImplementedErrorMessage.ERROR );
 			
 			super.record(reference);
 			
@@ -21,7 +23,7 @@ package airsqlite.statement.delegates
 		{
 			if( (condition as Filter).filter != 'equals')
 			{
-				//throw NotImplementedError.ERROR;
+				throwError(FilterErrorMessage.INCORRECT_FILTER, {nameOfFilter: (condition as Filter).filter});
 			}
 			
 			return super.field(field, condition);
@@ -30,11 +32,11 @@ package airsqlite.statement.delegates
 		override public function constructStatement(statement:ASLStatement):void
 		{
 			//if(hasWhereBeenCalled == false)
-				// TODO: throw StatementSyntaxError
-				
+			// TODO: throw StatementSyntaxError
+			
 			// if we dont got a pair of fields...
 			//if(fields.length == 2)
-				// TODO: throw StatementSyntaxError
+			// TODO: throw StatementSyntaxError
 			
 			var results:String				= "UPDATE "+tableName;
 			var setData:String				= " SET ";
