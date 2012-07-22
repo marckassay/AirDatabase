@@ -2,6 +2,7 @@ package airsqlite.statement.delegates
 {
 	import airsqlite.ASLStatement;
 	import airsqlite.interfaces.IASLStatementDelegate;
+	import airsqlite.interfaces.IDataPreposition;
 	import airsqlite.statement.FieldObject;
 	
 	import flash.errors.IllegalOperationError;
@@ -14,10 +15,14 @@ package airsqlite.statement.delegates
 		
 		protected var hasWhereBeenCalled:Boolean;
 		
+		protected var hasAllBeenCalled:Boolean;
+		
+		
 		public function ASLStatementDelegate()
 		{
 			fields = new Array();
 			hasWhereBeenCalled = false;
+			hasAllBeenCalled = false;
 		}
 		
 		public function constructStatement(statement:ASLStatement):void
@@ -56,6 +61,10 @@ package airsqlite.statement.delegates
 			this.tableName = tableName;
 		}
 		
+		public function all():void
+		{
+			hasAllBeenCalled = true;
+		}
 		
 		public function get tableName():String
 		{

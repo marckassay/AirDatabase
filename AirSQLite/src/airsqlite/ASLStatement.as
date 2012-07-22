@@ -28,10 +28,10 @@ package airsqlite
 		private var _responder:Responder;
 		
 		private var prefetch:int = -1;
-				
+		
 		
 		public function ASLStatement(result:Function=null, status:Function=null)
-		{			
+		{
 			if(result != null)
 				_responder = new Responder(result, status);
 		}
@@ -92,39 +92,38 @@ package airsqlite
 		
 		// IDataPreposition implementations
 		public function from(tableName:String):*
-		{			
+		{
 			delegate.tableName = tableName;
 			
 			return go();
 		}
 		
 		public function to(tableName:String):*
-		{				
+		{
 			delegate.tableName = tableName;
 			
-			return go();			
-		}
-		/*
-		public function all():IDataPreposition
-		{
-			this.prefetch = -1;
-			
-			return this;
+			return go();
 		}
 		
-		public function nextRecords(prefetch:int=1):IDataPreposition
+		public function all():IDataPreposition
 		{
-			this.prefetch = prefetch;
+			delegate.all();
 			
 			return this;
+		}
+		/*
+		public function nextRecords(prefetch:int=1):IDataPreposition
+		{
+		this.prefetch = prefetch;
+		
+		return this;
 		}
 		
 		public function previousRecords(prefetch:int=1):IDataPreposition
 		{
-			this.prefetch = prefetch * -1;
+		this.prefetch = prefetch * -1;
 		}
 		*/
-		
 		public function get responder():Responder
 		{
 			return _responder;
@@ -141,7 +140,7 @@ package airsqlite
 			
 			addDelegate();
 		}
-
+		
 		
 		public function get tableName():String
 		{
@@ -153,7 +152,7 @@ package airsqlite
 			
 			delegate.tableName = value;
 		}
-
+		
 		
 		public function get manipulator():DataManipulator
 		{

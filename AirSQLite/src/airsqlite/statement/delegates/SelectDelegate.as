@@ -34,11 +34,11 @@ package airsqlite.statement.delegates
 		
 		override public function constructStatement(statement:ASLStatement):void
 		{
+			var results:String = "SELECT * "+
+				"FROM "+tableName;
+			
 			if(fields.length > 0)
 			{
-				var results:String = "SELECT * "+
-					"FROM "+tableName;
-				
 				var fieldName:String;
 				var fieldFilter:Filter;
 				
@@ -61,9 +61,13 @@ package airsqlite.statement.delegates
 					results += " AND "+fieldName+fieldFilter.operator+andObject.colonField;
 					statement.parameters[andObject.colonField] = fieldFilter.value;
 				}
-				
-				statement.text = results;
 			}
+			else if(hasAllBeenCalled == false)
+			{
+				throwError(FilterErrorMessage.INCORRECT_FILTER);
+			}
+			
+			statement.text = results;
 		}
 	}
 }

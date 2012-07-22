@@ -3,17 +3,13 @@ package tests.airsqlite
 	import airsqlite.ASLConfig;
 	import airsqlite.ASLStatement;
 	import airsqlite.core.DataManipulator;
-	import airsqlite.core.asl_internal;
 	import airsqlite.core.asl_unit_testing;
-	import airsqlite.interfaces.IDataNoun;
-	import airsqlite.schema.DefaultTable;
 	import airsqlite.statement.DataManipulationVerb;
 	
 	import mockolate.mock;
 	import mockolate.runner.MockolateRule;
 	
 	import org.flexunit.asserts.assertEquals;
-	import org.hamcrest.object.nullValue;
 	
 	use namespace asl_unit_testing;
 	
@@ -23,7 +19,7 @@ package tests.airsqlite
 		private const CHARACTERS:String = "Characters";
 		
 		private var fixture:ASLStatement;
-
+		
 		[Rule]
 		public var rule:MockolateRule = new MockolateRule();
 		
@@ -40,28 +36,27 @@ package tests.airsqlite
 		
 		[Before]
 		public function runBeforeEveryTest():void 
-		{			
+		{
 			fixture = new ASLStatement();
-		}   
+		} 
 		
-		[After]  
+		[After]
 		public function runAfterEveryTest():void 
-		{   			
-			fixture = null;  
+		{
+			fixture = null;
 		}
 		
-		[Ignore]
 		[Test]
 		public function testSelectMethodIsReturningAsExpected():void 
-		{		
+		{
 			mock(manipulator).method('processASLStatement').args(fixture).returns(fixture);
 			fixture.manipulator = manipulator;
 			
 			fixture.manipulationVerb = DataManipulationVerb.SELECT;
-
-			var statement:ASLStatement //= fixture.all().from(CHARACTERS);
 			
-			assertEquals(statement.text, "SELECT * FROM tableA");
+			var statement:ASLStatement = fixture.all().from(CHARACTERS);
+			
+			assertEquals(statement.text, "SELECT * FROM Characters");
 		}
 	}
 }
