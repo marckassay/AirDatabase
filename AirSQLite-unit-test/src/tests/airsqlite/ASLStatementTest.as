@@ -47,7 +47,7 @@ package tests.airsqlite
 		}
 		
 		[Test]
-		public function testSelectMethodIsReturningAsExpected():void 
+		public function testSelectAllMethodIsReturningAsExpected():void 
 		{
 			mock(manipulator).method('processASLStatement').args(fixture).returns(fixture);
 			fixture.manipulator = manipulator;
@@ -57,6 +57,19 @@ package tests.airsqlite
 			var statement:ASLStatement = fixture.all().from(CHARACTERS);
 			
 			assertEquals(statement.text, "SELECT * FROM Characters");
+		}
+		
+		[Test]
+		public function testRemoveAllMethodIsReturningAsExpected():void 
+		{
+			mock(manipulator).method('processASLStatement').args(fixture).returns(fixture);
+			fixture.manipulator = manipulator;
+			
+			fixture.manipulationVerb = DataManipulationVerb.REMOVE;
+			
+			var statement:ASLStatement = fixture.all().from(CHARACTERS);
+			
+			assertEquals(statement.text, "DELETE * FROM Characters");
 		}
 	}
 }

@@ -1,6 +1,6 @@
 package airsqlite.filters.strings
 {
-	public function contains(value:String)
+	public function contains(value:String):*
 	{
 	}
 }

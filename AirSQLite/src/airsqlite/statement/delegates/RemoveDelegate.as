@@ -31,9 +31,11 @@ package airsqlite.statement.delegates
 		
 		override public function constructStatement(statement:ASLStatement):void
 		{
+			var results:String;
+			
 			if(fields.length > 0)
 			{
-				var results:String = "DELETE FROM "+tableName;
+				results = "DELETE FROM "+tableName;
 				
 				var fieldName:String;
 				var fieldFilter:Filter;
@@ -60,6 +62,12 @@ package airsqlite.statement.delegates
 				
 				statement.text = results;
 			}
+			else if(hasAllBeenCalled == true)
+			{
+				results = "DELETE * FROM "+tableName;
+			}
+			
+			statement.text = results;
 		}
 	}
 }

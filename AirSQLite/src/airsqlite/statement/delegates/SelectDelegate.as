@@ -49,7 +49,7 @@ package airsqlite.statement.delegates
 					fieldFilter 				= whereObject.condition as Filter;
 					
 					results += " WHERE "+fieldName+fieldFilter.operator+whereObject.colonField;
-					statement.parameters[whereObject.colonField] = fieldFilter.value
+					statement.parameters[whereObject.colonField] = fieldFilter.value;
 				}
 				
 				for(var fieldPointer:int = 1; fields[fieldPointer]!=null; fieldPointer++)
