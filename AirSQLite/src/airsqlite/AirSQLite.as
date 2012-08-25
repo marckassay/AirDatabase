@@ -2,8 +2,9 @@ package airsqlite
 {
 	import airsqlite.core.DataManipulator;
 	import airsqlite.core.asl_internal;
-	import airsqlite.interfaces.IDataVerb;
+	import airsqlite.core.asl_unit_testing;
 	import airsqlite.interfaces.IDataNoun;
+	import airsqlite.interfaces.IDataVerb;
 	
 	use namespace asl_internal;
 	
@@ -15,7 +16,7 @@ package airsqlite
 		
 		
 		/**
-		 * Constructor is arguments are closed for MXML component implementation.
+		 * Constructor's arguments are closed for MXML component implementation.
 		 */
 		public function AirSQLite()
 		{
@@ -51,6 +52,11 @@ package airsqlite
 			_config = value;
 			
 			manipulator = new DataManipulator(value);
+		}
+		
+		asl_unit_testing function get testManipulator():DataManipulator
+		{
+			return manipulator;
 		}
 	}
 }

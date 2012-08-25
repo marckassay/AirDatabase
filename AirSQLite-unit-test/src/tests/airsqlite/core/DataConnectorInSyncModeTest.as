@@ -34,23 +34,23 @@ package tests.airsqlite.core
 		{			
 			var config:ASLConfig = new ASLConfig();
 			config.asyncConnection 	 = false;
-			config.tables 			 = tables;
+			config.tables 			 = getTables();
 			config.uri 				 = DATA_BASE_FILE;
 			
 			fixture 				 = new DataConnector(config);
-		}   
+		}
 		
-		[After]  
-		public function runAfterEveryTest():void 
-		{   
+		[After]
+		public function runAfterEveryTest():void
+		{
 			deleteDataBaseFile();
 			
-			fixture 				= null;  
+			fixture 				= null;
 		}
 		
 		[Test(order="1")]
-		public function testThatDataBaseFileHasBeenWrittenToDisk():void 
-		{			
+		public function testThatDataBaseFileHasBeenWrittenToDisk():void
+		{
 			var statement:ASLStatement = fixture.testInitializeStatement();
 			statement.text = "SELECT key FROM Characters";
 			
@@ -92,7 +92,7 @@ package tests.airsqlite.core
 			}
 		}
 		
-		private function get tables():Vector.<IDataVerb>
+		private function getTables():Vector.<IDataVerb>
 		{
 			var _tables:Vector.<IDataVerb> 		= new Vector.<IDataVerb>();
 			var characters:DefaultTable 		= new DefaultTable();

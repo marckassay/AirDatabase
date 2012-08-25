@@ -11,7 +11,7 @@ package tests.airsqlite.statement
 	{
 		private const CHARACTERS:String = "Characters";
 		
-		private var fixture:SelectDelegate;	
+		private var fixture:SelectDelegate;
 		
 		
 		[Before]
