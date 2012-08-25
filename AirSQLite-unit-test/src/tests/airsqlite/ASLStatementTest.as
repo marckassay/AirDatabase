@@ -4,6 +4,7 @@ package tests.airsqlite
 	import airsqlite.ASLStatement;
 	import airsqlite.core.DataManipulator;
 	import airsqlite.core.asl_unit_testing;
+	import airsqlite.filters.equals;
 	import airsqlite.statement.DataManipulationVerb;
 	
 	import mockolate.mock;
@@ -66,10 +67,19 @@ package tests.airsqlite
 			fixture.manipulator = manipulator;
 			
 			fixture.manipulationVerb = DataManipulationVerb.REMOVE;
-			
+										// ASLStatement.ASLStatement.ASLStatement
 			var statement:ASLStatement = fixture.all().from(CHARACTERS);
 			
 			assertEquals(statement.text, "DELETE * FROM Characters");
+		}
+		
+		[Test]
+		public function testToMethodIsReturningAsExpected():void 
+		{
+			fixture.manipulationVerb = DataManipulationVerb.INSERT;
+										// ASLStatement.ASLStatementDelegate.ASLStatementDelegate
+			var statement:ASLStatement = fixture.field('first', equals('Dagny')).to(CHARACTERS);
+			
 		}
 	}
 }

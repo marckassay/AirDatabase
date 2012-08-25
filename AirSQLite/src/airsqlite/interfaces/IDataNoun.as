@@ -9,7 +9,7 @@ package airsqlite.interfaces
 		 * <code>reference</code> is a key, then it must return <code>true</code> when passed 
 		 * in the <code>UIDUtil.isUID()</code> static method.
 		 * 
-		 * @see mx.utils.UIDUtil.isUID()  
+		 * @see mx.utils.UIDUtil.isUID()
 		 */
 		function record(reference:*):IASLStatementDelegate
 		

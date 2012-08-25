@@ -1,8 +1,8 @@
 package airsqlite
 {
 	import airsqlite.core.DataManipulator;
+	import airsqlite.interfaces.IASLStatement;
 	import airsqlite.interfaces.IASLStatementDelegate;
-	import airsqlite.interfaces.IDataNoun;
 	import airsqlite.interfaces.IDataPreposition;
 	import airsqlite.statement.DataManipulationVerb;
 	import airsqlite.statement.delegates.ASLStatementDelegate;
@@ -15,7 +15,7 @@ package airsqlite
 	import flash.net.Responder;
 	
 	
-	public class ASLStatement extends SQLStatement implements IDataNoun, IDataPreposition
+	public class ASLStatement extends SQLStatement implements IASLStatement
 	{
 		private var _manipulator:DataManipulator;
 		
@@ -75,14 +75,18 @@ package airsqlite
 		}
 		
 		// IDataNoun implementations
-		public function record(reference:*):IASLStatementDelegate
+		public function record(reference:*):IASLStatement
 		{
 			return delegate.record(reference);
+			
+			return this;
 		}
 		
-		public function field(field:String, condition:*):IASLStatementDelegate
+		public function field(field:String, condition:*):IASLStatement
 		{
-			return delegate.field(field, condition);
+			delegate.field(field, condition);
+			
+			return this;
 		}
 		
 		public function where():IASLStatementDelegate

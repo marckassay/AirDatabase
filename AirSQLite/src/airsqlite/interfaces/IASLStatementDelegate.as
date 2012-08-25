@@ -1,6 +1,6 @@
 package airsqlite.interfaces
 {
-	public interface IASLStatementDelegate extends IDataNoun, IDataPreposition
+	public interface IASLStatementDelegate extends IASLStatement
 	{
 
 	}

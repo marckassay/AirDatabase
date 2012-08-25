@@ -41,6 +41,7 @@
     <classEntry path="airsqlite.errors.throwError"/>
     <classEntry path="airsqlite.errors.messages.IllegalStatementErrorMessage"/>
     <classEntry path="airsqlite.errors.messages.ErrorID"/>
+    <classEntry path="airsqlite.interfaces.IASLStatement"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>
