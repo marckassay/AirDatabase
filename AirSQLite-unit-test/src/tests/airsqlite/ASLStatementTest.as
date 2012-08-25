@@ -67,20 +67,24 @@ package tests.airsqlite
 			fixture.manipulator = manipulator;
 			
 			fixture.manipulationVerb = DataManipulationVerb.REMOVE;
-										// ASLStatement.ASLStatement.ASLStatement
+			
 			var statement:ASLStatement = fixture.all().from(CHARACTERS);
 			
 			assertEquals(statement.text, "DELETE * FROM Characters");
 		}
 		
 		[Test]
-		[Ignore]
 		public function testToMethodIsReturningAsExpected():void 
 		{
+			mock(manipulator).method('processASLStatement').args(fixture).returns(fixture);
+			fixture.manipulator = manipulator;
+			
 			fixture.manipulationVerb = DataManipulationVerb.INSERT;
-										// ASLStatement.ASLStatementDelegate.ASLStatementDelegate
+			
 			var statement:ASLStatement = fixture.field('first', equals('Dagny')).to(CHARACTERS);
 			
+			assertEquals("INSERT INTO Characters (first) VALUES (:first)", statement.text);
+			assertEquals(statement.parameters[':first'], 'Dagny');
 		}
 	}
 }
