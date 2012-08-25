@@ -2,7 +2,6 @@ package airsqlite
 {
 	import airsqlite.core.DataManipulator;
 	import airsqlite.interfaces.IASLStatement;
-	import airsqlite.interfaces.IASLStatementDelegate;
 	import airsqlite.interfaces.IDataPreposition;
 	import airsqlite.statement.DataManipulationVerb;
 	import airsqlite.statement.delegates.ASLStatementDelegate;
@@ -77,7 +76,7 @@ package airsqlite
 		// IDataNoun implementations
 		public function record(reference:*):IASLStatement
 		{
-			return delegate.record(reference);
+			delegate.record(reference);
 			
 			return this;
 		}
@@ -89,9 +88,11 @@ package airsqlite
 			return this;
 		}
 		
-		public function where():IASLStatementDelegate
+		public function where():IASLStatement
 		{
-			return delegate.where();
+			delegate.where();
+			
+			return this;
 		}
 		
 		// IDataPreposition implementations

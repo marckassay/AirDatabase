@@ -11,7 +11,7 @@ package airsqlite.interfaces
 		 * 
 		 * @see mx.utils.UIDUtil.isUID()
 		 */
-		function record(reference:*):IASLStatementDelegate
+		function record(reference:*):IASLStatement
 		
 		/**
 		 * To be used to retrieve records with columns, via <code>field</code> param 
@@ -26,11 +26,11 @@ package airsqlite.interfaces
 		 * 	asl.select().field('username', startsWith('Da')).from('Characters');
 	 	 * </code>
 		 */
-		function field(field:String, condition:*):IASLStatementDelegate
+		function field(field:String, condition:*):IASLStatement
 		
 		/**
 		 * 
 		 */
-		function where():IASLStatementDelegate
+		function where():IASLStatement
 	}
 }

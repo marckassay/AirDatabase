@@ -1,13 +1,13 @@
 package airsqlite.statement.delegates
 {
 	import airsqlite.ASLStatement;
+	import airsqlite.interfaces.IASLStatement;
 	import airsqlite.interfaces.IASLStatementDelegate;
-	import airsqlite.interfaces.IDataPreposition;
 	import airsqlite.statement.FieldObject;
 	
 	import flash.errors.IllegalOperationError;
 	
-	public class ASLStatementDelegate implements IASLStatementDelegate
+	public class ASLStatementDelegate implements IASLStatement
 	{	
 		private var _tableName:String;
 		
@@ -31,19 +31,19 @@ package airsqlite.statement.delegates
 		}
 		
 		// IDataNoun implementations
-		public function record(reference:*):IASLStatementDelegate
+		public function record(reference:*):IASLStatement
 		{
 			return this;
 		}
 		
-		public function field(field:String, condition:*):IASLStatementDelegate
+		public function field(field:String, condition:*):IASLStatement
 		{
 			fields.push(new FieldObject(field, condition));
 			
 			return this;
 		}
 		
-		public function where():IASLStatementDelegate
+		public function where():IASLStatement
 		{
 			hasWhereBeenCalled = true;
 			

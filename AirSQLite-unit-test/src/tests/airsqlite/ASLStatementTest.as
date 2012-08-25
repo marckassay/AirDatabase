@@ -74,6 +74,7 @@ package tests.airsqlite
 		}
 		
 		[Test]
+		[Ignore]
 		public function testToMethodIsReturningAsExpected():void 
 		{
 			fixture.manipulationVerb = DataManipulationVerb.INSERT;
