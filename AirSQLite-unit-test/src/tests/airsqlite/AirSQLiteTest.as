@@ -14,7 +14,7 @@ package tests.airsqlite
 	import flash.filesystem.File;
 	
 	import org.flexunit.asserts.assertEquals;
-	import org.flexunit.asserts.assertNotNull;
+	import org.flexunit.asserts.assertNull;
 	
 	use namespace asl_unit_testing;
 	
@@ -39,12 +39,12 @@ package tests.airsqlite
 		public function runAfterEveryTest():void 
 		{
 			deleteDataBaseFile();
-		
+			
 			fixture = null;
 		}
 		
 		[Test]
-		public function testSelectMethod():void
+		public function testSelectMethodByLastColumn():void
 		{
 			fixture.insert().field('first', equals('Dagny')).field('last', equals('Taggart')).field('key', equals(3)).to('Characters');
 			
@@ -54,6 +54,47 @@ package tests.airsqlite
 			assertEquals((results.data[0] as Object).last, 'Taggart');
 			assertEquals((results.data[0] as Object).key, 3);
 		}
+		
+		[Test]
+		public function testSelectMethodByKeyColumn():void
+		{
+			fixture.insert().field('first', equals('Dagny')).field('last', equals('Taggart')).field('key', equals(3)).to('Characters');
+			
+			var results:SQLResult = fixture.select().field('key', equals(3)).from('Characters');
+			
+			assertEquals((results.data[0] as Object).first, 'Dagny');
+			assertEquals((results.data[0] as Object).last, 'Taggart');
+			assertEquals((results.data[0] as Object).key, 3);
+		}
+		
+		[Test]
+		public function testRemoveMethodByKeyColumn():void
+		{
+			fixture.insert().field('first', equals('Dagny')).field('last', equals('Taggart')).field('key', equals(3)).to('Characters');
+			
+			var results:SQLResult = fixture.remove().field('key', equals(3)).from('Characters');
+			
+			assertNull(results.data);
+		}
+		
+		[Test]
+		public function testUpdateMethodByKeyColumn():void
+		{
+			fixture.insert().field('first', equals('Dgnya')).field('last', equals('Taggart')).field('key', equals(3)).to('Characters');
+			
+			fixture.update().field('first', equals('Dagny')).where().field('key', equals(3)).to('Characters');
+			
+			var results:SQLResult = fixture.select().field('key', equals(3)).from('Characters');
+			
+			assertEquals((results.data[0] as Object).first, 'Dagny');
+			assertEquals((results.data[0] as Object).last, 'Taggart');
+			assertEquals((results.data[0] as Object).key, 3);
+		}
+		
+		
+		////////////////////////////////////////////
+		// helper methods
+		////////////////////////////////////////////
 		
 		private function getASQLiteConfig():ASLConfig
 		{

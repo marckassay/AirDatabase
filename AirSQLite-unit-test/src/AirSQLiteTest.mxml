@@ -20,6 +20,6 @@
 		]]>
 	</fx:Script>
 		
-	<ns:TestRunnerBase id="uiListener" width="100%" height="100%"  />
+	<ns:TestRunnerBase id="uiListener" width="100%" height="100%" />
 		
 </s:WindowedApplication>
