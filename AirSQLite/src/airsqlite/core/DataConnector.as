@@ -146,14 +146,14 @@ package airsqlite.core
 				}
 				
 				_tables[table.name] = table;
-								
+			
 				// create table(s) statements...
 				var statement:ASLStatement = initializeStatement();
 				
 				// adding column(s) to table...
 				var columns:String = "";
 				for each(var column:DefaultColumn in table.columns)
-				{					
+				{
 					columns += column.name+" "+column.dataType+",";
 					columns += " ";
 				}

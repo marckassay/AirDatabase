@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:mx="library://ns.adobe.com/flex/mx" 
+					   xmlns:asl="https://github.com/marckassay/airsqlite"
+					   applicationComplete="applicationCompleteHandler(event)"
+					   >
+	
+	<fx:Declarations>
+		<asl:AirSQLite id="sql" 
+					   >
+			<asl:config>
+				<asl:ASLConfig uri="example.db"
+							   >
+					<asl:tables>
+						<asl:DefaultTable id="Characters" 
+										  >
+							<asl:columns>
+								<asl:DefaultColumn id="key" 	dataType="NUMERIC"/>
+								<asl:DefaultColumn id="first" 	dataType="TEXT" />
+								<asl:DefaultColumn id="last" 	dataType="TEXT"/>
+							</asl:columns>
+						</asl:DefaultTable>
+					</asl:tables>
+				</asl:ASLConfig>
+			</asl:config>
+		</asl:AirSQLite>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import airsqlite.filters.equals;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var characters:ArrayList;
+			
+			protected function applicationCompleteHandler(event:FlexEvent):void
+			{
+				sql.insert().field('key', equals(3)).field('first', equals('Dagny')).field('last', equals('Taggart')).to('Characters');
+				
+				var results:SQLResult = sql.select().field('key', equals(3)).from('Characters');
+				
+				characters = new ArrayList(results.data);
+			}
+		]]>
+	</fx:Script>
+	
+	<s:DataGrid
+		top="20"
+		left="20"
+		right="20"
+		bottom="20"
+		dataProvider="{characters}" >
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn
+					headerText="key"
+					dataField="key" />
+				<s:GridColumn
+					headerText="first"
+					dataField="first" />
+				<s:GridColumn
+					headerText="last"
+					dataField="last" />
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	
+</s:WindowedApplication>

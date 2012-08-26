@@ -1,8 +1,10 @@
 package airsqlite.schema
 {
 	import airsqlite.interfaces.IDataColumn;
+	
+	import mx.core.IMXMLObject;
 
-	public class AbstractColumn implements IDataColumn
+	public class AbstractColumn implements IDataColumn, IMXMLObject
 	{
 		private var _id:String;
 		private var _name:String;
@@ -26,6 +28,10 @@ package airsqlite.schema
 			return _name;
 		}
 		
+		public function initialized(document:Object, id:String):void
+		{
+			_name = id;
+		}
 		
 		[Inspectable(category="General", enumeration="TEXT,NUMERIC,REAL,BOOLEAN,DATE,XML,XMLLIST,OBJECT,NONE", defaultValue="TEXT")]
 		public function get dataType():String

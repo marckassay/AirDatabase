@@ -2,15 +2,16 @@ package airsqlite.schema
 {
 	import airsqlite.core.DataSender;
 	import airsqlite.core.asl_internal;
-	import airsqlite.interfaces.IDataVerb;
 	import airsqlite.interfaces.IDataColumn;
 	import airsqlite.interfaces.IDataNoun;
+	import airsqlite.interfaces.IDataVerb;
 	
 	import flash.errors.IllegalOperationError;
 	
+	import mx.core.IMXMLObject;
 	import mx.utils.UIDUtil;
 
-	public class AbstractTable implements IDataVerb
+	public class AbstractTable implements IDataVerb, IMXMLObject
 	{
 		/**
 		 * This is to be as an alias to the first (or in some cases, only) table created.
@@ -90,6 +91,10 @@ package airsqlite.schema
 			return _name;
 		}
 		
+		public function initialized(document:Object, id:String):void
+		{
+			_name = id;
+		}
 		
 		public function get columns():Vector.<IDataColumn>
 		{
