@@ -1,12 +1,9 @@
 package airsqlite
 {
-	import airsqlite.filters.strings.contains;
 	import airsqlite.interfaces.IDataVerb;
-	import airsqlite.schema.DefaultTable;
 	
-	import flash.filesystem.File;
 	import flash.utils.ByteArray;
-
+	
 	public class ASLConfig 
 	{
 		private var _uri:String;
@@ -14,7 +11,7 @@ package airsqlite
 		private var _encryptionKey:ByteArray;
 		
 		private var _asyncConnection:Boolean;
-				
+		
 		private var _tables:Vector.<IDataVerb>;
 		
 		/**
@@ -23,7 +20,6 @@ package airsqlite
 		public function ASLConfig()
 		{
 			_asyncConnection = false;
-			//_tables = new Vector.<ASQLiteTable>(); 
 		}
 		
 		
@@ -45,7 +41,7 @@ package airsqlite
 		{
 			_tables = value;
 		}
-
+		
 		
 		[Inspectable(category="General", enumeration="false, true", defaultValue="false")]
 		public function get asyncConnection():Boolean

@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!---
+	<p><b>Example_101:</b></p>
+
+	<p>This example creates a database in synchronous mode with a 3 column table.
+	When <code>FlexEvent.APPLICATION_COMPLETE</code> event is dispatched, it will insert 
+	a record then retrieve that record by using the Id field.  With the returned data, it 
+	will create an <code>ArrayList</code> to be used in the <code>DataGrid</code>.</p>
+-->
 <s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
 					   xmlns:s="library://ns.adobe.com/flex/spark" 
 					   xmlns:mx="library://ns.adobe.com/flex/mx" 
@@ -7,18 +15,18 @@
 					   >
 	
 	<fx:Declarations>
-		<asl:AirSQLite id="sql" 
+		<asl:AirSQLite id="sql"
 					   >
 			<asl:config>
-				<asl:ASLConfig uri="example.db"
+				<asl:ASLConfig uri="atlasshrugged.db"
 							   >
 					<asl:tables>
-						<asl:DefaultTable id="Characters" 
+						<asl:DefaultTable id="Characters"
 										  >
 							<asl:columns>
-								<asl:DefaultColumn id="key" 	dataType="NUMERIC"/>
-								<asl:DefaultColumn id="first" 	dataType="TEXT" />
-								<asl:DefaultColumn id="last" 	dataType="TEXT"/>
+								<asl:DefaultColumn id="Id"			dataType="NUMERIC"/>
+								<asl:DefaultColumn id="FirstName"	dataType="TEXT" />
+								<asl:DefaultColumn id="LastName"	dataType="TEXT"/>
 							</asl:columns>
 						</asl:DefaultTable>
 					</asl:tables>
@@ -38,10 +46,15 @@
 			
 			protected function applicationCompleteHandler(event:FlexEvent):void
 			{
-				sql.insert().field('key', equals(3)).field('first', equals('Dagny')).field('last', equals('Taggart')).to('Characters');
+				// insert a record by setting value to the Id, FirstName and LastName fields on the Characters table... 
+				sql.insert().field('Id',		equals(3)).
+							 field('FirstName',	equals('Dagny')).
+							 field('LastName',	equals('Taggart')).to('Characters');
 				
-				var results:SQLResult = sql.select().field('key', equals(3)).from('Characters');
+				// select record with the Id field...
+				var results:SQLResult = sql.select().field('Id', equals(3)).from('Characters');
 				
+				// use results.data to create a new Arraylist for DataGrid below...
 				characters = new ArrayList(results.data);
 			}
 		]]>
@@ -56,14 +69,14 @@
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn
-					headerText="key"
-					dataField="key" />
+					headerText="Id"
+					dataField="Id" />
 				<s:GridColumn
-					headerText="first"
-					dataField="first" />
+					headerText="First Name"
+					dataField="FirstName" />
 				<s:GridColumn
-					headerText="last"
-					dataField="last" />
+					headerText="Last Name"
+					dataField="LastName" />
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
