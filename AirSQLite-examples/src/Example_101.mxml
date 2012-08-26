@@ -4,7 +4,7 @@
 
 	<p>This example creates a database in synchronous mode with a 3 column table.
 	When <code>FlexEvent.APPLICATION_COMPLETE</code> event is dispatched, it will insert 
-	a record then retrieve that record by using the Id field.  With the returned data, it 
+	a record then retrieve that record by using the key field.  With the returned data, it 
 	will create an <code>ArrayList</code> to be used in the <code>DataGrid</code>.</p>
 -->
 <s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
@@ -24,9 +24,9 @@
 						<asl:DefaultTable id="Characters"
 										  >
 							<asl:columns>
-								<asl:DefaultColumn id="Id"			dataType="NUMERIC"/>
-								<asl:DefaultColumn id="FirstName"	dataType="TEXT" />
-								<asl:DefaultColumn id="LastName"	dataType="TEXT"/>
+								<asl:DefaultColumn id="key"			dataType="NUMERIC"/>
+								<asl:DefaultColumn id="firstName"	dataType="TEXT" />
+								<asl:DefaultColumn id="lastName"	dataType="TEXT"/>
 							</asl:columns>
 						</asl:DefaultTable>
 					</asl:tables>
@@ -46,13 +46,13 @@
 			
 			protected function applicationCompleteHandler(event:FlexEvent):void
 			{
-				// insert a record by setting value to the Id, FirstName and LastName fields on the Characters table... 
-				sql.insert().field('Id',		equals(3)).
-							 field('FirstName',	equals('Dagny')).
-							 field('LastName',	equals('Taggart')).to('Characters');
+				// insert a record by setting value to the key, firstName and lastName fields on the Characters table... 
+				sql.insert().field('key',		equals(3)).
+							 field('firstName',	equals('Dagny')).
+							 field('lastName',	equals('Taggart')).to('Characters');
 				
-				// select record with the Id field...
-				var results:SQLResult = sql.select().field('Id', equals(3)).from('Characters');
+				// select record with the key field...
+				var results:SQLResult = sql.select().field('key', equals(3)).from('Characters');
 				
 				// use results.data to create a new Arraylist for DataGrid below...
 				characters = new ArrayList(results.data);
@@ -69,14 +69,14 @@
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn
-					headerText="Id"
-					dataField="Id" />
+					headerText="Key"
+					dataField="key" />
 				<s:GridColumn
 					headerText="First Name"
-					dataField="FirstName" />
+					dataField="firstName" />
 				<s:GridColumn
 					headerText="Last Name"
-					dataField="LastName" />
+					dataField="lastName" />
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>

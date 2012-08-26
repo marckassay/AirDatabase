@@ -36,7 +36,7 @@ package airsqlite.statement
 		/**
 		 * To be used in the sub delegate.  This value is used in the <code>parameter</code>
 		 * Object property of a statement.  For instance if the following was called, 
-		 * <code>field(first, equals('Dagny'))</code>, this value would be <code>:first</code>.
+		 * <code>field('first', equals('Dagny'))</code>, this value would be <code>:first</code>.
 		 */
 		public function get colonField():String
 		{
