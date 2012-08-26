@@ -10,34 +10,34 @@
 <s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
 					   xmlns:s="library://ns.adobe.com/flex/spark" 
 					   xmlns:mx="library://ns.adobe.com/flex/mx" 
-					   xmlns:asl="https://github.com/marckassay/airsqlite"
+					   xmlns:adb="https://github.com/marckassay/airdatabase"
 					   applicationComplete="applicationCompleteHandler(event)"
 					   >
 	
 	<fx:Declarations>
-		<asl:AirSQLite id="sql"
+		<adb:AirDatabase id="sql"
 					   >
-			<asl:config>
-				<asl:ASLConfig uri="atlasshrugged.db"
+			<adb:config>
+				<adb:ADBConfig uri="atlasshrugged.db"
 							   >
-					<asl:tables>
-						<asl:DefaultTable id="Characters"
+					<adb:tables>
+						<adb:DefaultTable id="Characters"
 										  >
-							<asl:columns>
-								<asl:DefaultColumn id="key"			dataType="NUMERIC"/>
-								<asl:DefaultColumn id="firstName"	dataType="TEXT" />
-								<asl:DefaultColumn id="lastName"	dataType="TEXT"/>
-							</asl:columns>
-						</asl:DefaultTable>
-					</asl:tables>
-				</asl:ASLConfig>
-			</asl:config>
-		</asl:AirSQLite>
+							<adb:columns>
+								<adb:DefaultColumn id="key"			dataType="NUMERIC"/>
+								<adb:DefaultColumn id="firstName"	dataType="TEXT" />
+								<adb:DefaultColumn id="lastName"	dataType="TEXT"/>
+							</adb:columns>
+						</adb:DefaultTable>
+					</adb:tables>
+				</adb:ADBConfig>
+			</adb:config>
+		</adb:AirDatabase>
 	</fx:Declarations>
 	
 	<fx:Script>
 		<![CDATA[
-			import airsqlite.filters.equals;
+			import airdatabase.filters.equals;
 			
 			import mx.events.FlexEvent;
 			

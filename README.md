@@ -1,6 +1,6 @@
 # AirSQLite
 
-A Flex project that gives Flex AIR applications the ability to access their local SQLite databases easily.  With just a few lines of code, it allows applications to create a SQLite database file with table(s) and perform SELECT, INSERT, UPDATE and DELETE operations in a synchronous connection.  So there is no need to listen for events; data is returned instantly!   
+A Flex project that gives Flex AIR applications the ability to access their local SQLite databases easily.  With just a few lines of code, it allows applications to create a SQLite database file with table(s) and perform SELECT, INSERT, UPDATE and DELETE operations in a synchronous connection.  So there is no need to listen for events, data is returned instantly!   
 
 Below is code taken from Example_101.mxml file from the examples project, which shows AirSQLite in its simplest use:
 
@@ -92,6 +92,7 @@ The AirSQLite project was and will continue to be developed using unit tests.  A
 ### Roadmap: Short-term
 * Have AirSQLite to be used in Flash projects too.
 * Create an Apache Ant build script so that it will output a Flex and Flash SWC file.
+* Allow databases to be encrypted.
 
 ### Roadmap: Long-term
 * Have the project use strong-typed objects for storage.

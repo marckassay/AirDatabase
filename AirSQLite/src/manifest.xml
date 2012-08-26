@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <componentPackage>
 
-	<component id="AirSQLite" 		class="airsqlite.AirSQLite" />
-	<component id="ASLConfig" 		class="airsqlite.ASLConfig" />
-	<component id="ASLEvent" 		class="airsqlite.ASLEvent" />
+	<component id="AirDatabase" 		class="airdatabase.AirDatabase" />
+	<component id="ADBConfig" 		class="airdatabase.ADBConfig" />
+	<component id="ADBEvent" 		class="airdatabase.ADBEvent" />
 		
-	<component id="DefaultTable" 	class="airsqlite.schema.DefaultTable" />
-	<component id="DefaultColumn" 	class="airsqlite.schema.DefaultColumn" />
+	<component id="DefaultTable" 	class="airdatabase.schema.DefaultTable" />
+	<component id="DefaultColumn" 	class="airdatabase.schema.DefaultColumn" />
 
 </componentPackage>

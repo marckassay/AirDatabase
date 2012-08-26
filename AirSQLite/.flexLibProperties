@@ -1,50 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="airsqlite.ASLEvent"/>
-    <classEntry path="airsqlite.ASLConfig"/>
-    <classEntry path="airsqlite.AirSQLite"/>
-    <classEntry path="airsqlite.schema.DefaultTable"/>
-    <classEntry path="airsqlite.schema.DefaultColumn"/>
-    <classEntry path="airsqlite.schema.DataTypes"/>
-    <classEntry path="airsqlite.interfaces.IDataVerb"/>
-    <classEntry path="airsqlite.schema.AbstractColumn"/>
-    <classEntry path="airsqlite.schema.AbstractTable"/>
-    <classEntry path="airsqlite.core.DataConnector"/>
-    <classEntry path="airsqlite.core.DataSender"/>
-    <classEntry path="airsqlite.core.DataManipulator"/>
-    <classEntry path="airsqlite.core.TransactionQueueManager"/>
-    <classEntry path="airsqlite.ASLStatement"/>
-    <classEntry path="airsqlite.interfaces.IDataNoun"/>
-    <classEntry path="airsqlite.interfaces.IDataPreposition"/>
-    <classEntry path="airsqlite.interfaces.IASLStatementDelegate"/>
-    <classEntry path="airsqlite.statement.delegates.ASLStatementDelegate"/>
-    <classEntry path="airsqlite.filters.numbers.greaterThan"/>
-    <classEntry path="airsqlite.filters.numbers.lessThan"/>
-    <classEntry path="airsqlite.filters.strings.contains"/>
-    <classEntry path="airsqlite.filters.Filter"/>
-    <classEntry path="airsqlite.statement.FieldObject"/>
-    <classEntry path="airsqlite.statement.delegates.UpdateDelegate"/>
-    <classEntry path="airsqlite.statement.delegates.RemoveDelegate"/>
-    <classEntry path="airsqlite.errors.FilterError"/>
-    <classEntry path="airsqlite.errors.NotImplementedError"/>
+    <classEntry path="airdatabase.schema.DefaultTable"/>
+    <classEntry path="airdatabase.schema.DefaultColumn"/>
+    <classEntry path="airdatabase.schema.DataTypes"/>
+    <classEntry path="airdatabase.interfaces.IDataVerb"/>
+    <classEntry path="airdatabase.schema.AbstractColumn"/>
+    <classEntry path="airdatabase.schema.AbstractTable"/>
+    <classEntry path="airdatabase.core.DataConnector"/>
+    <classEntry path="airdatabase.core.DataSender"/>
+    <classEntry path="airdatabase.core.DataManipulator"/>
+    <classEntry path="airdatabase.core.TransactionQueueManager"/>
+    <classEntry path="airdatabase.interfaces.IDataNoun"/>
+    <classEntry path="airdatabase.interfaces.IDataPreposition"/>
+    <classEntry path="airdatabase.filters.numbers.greaterThan"/>
+    <classEntry path="airdatabase.filters.numbers.lessThan"/>
+    <classEntry path="airdatabase.filters.strings.contains"/>
+    <classEntry path="airdatabase.filters.Filter"/>
+    <classEntry path="airdatabase.statement.FieldObject"/>
+    <classEntry path="airdatabase.statement.delegates.UpdateDelegate"/>
+    <classEntry path="airdatabase.statement.delegates.RemoveDelegate"/>
+    <classEntry path="airdatabase.errors.FilterError"/>
+    <classEntry path="airdatabase.errors.NotImplementedError"/>
     <classEntry path="airsqlite.errors.messages.StatementSyntaxMessage"/>
-    <classEntry path="airsqlite.errors.IllegalStatementError"/>
-    <classEntry path="airsqlite.errors.messages.BaseErrorMessage"/>
-    <classEntry path="airsqlite.errors.messages.IErrorMessage"/>
-    <classEntry path="airsqlite.errors.messages.FilterErrorMessage"/>
-    <classEntry path="airsqlite.errors.messages.NotImplementedErrorMessage"/>
-    <classEntry path="airsqlite.errors.AbstractErrorCreator"/>
-    <classEntry path="airsqlite.errors.ErrorCreator"/>
-    <classEntry path="airsqlite.errors.IError"/>
+    <classEntry path="airdatabase.errors.IllegalStatementError"/>
+    <classEntry path="airdatabase.errors.messages.BaseErrorMessage"/>
+    <classEntry path="airdatabase.errors.messages.IErrorMessage"/>
+    <classEntry path="airdatabase.errors.messages.FilterErrorMessage"/>
+    <classEntry path="airdatabase.errors.messages.NotImplementedErrorMessage"/>
+    <classEntry path="airdatabase.errors.AbstractErrorCreator"/>
+    <classEntry path="airdatabase.errors.ErrorCreator"/>
+    <classEntry path="airdatabase.errors.IError"/>
     <classEntry path="asx.string.replaceTokens"/>
-    <classEntry path="airsqlite.errors.throwError"/>
-    <classEntry path="airsqlite.errors.messages.IllegalStatementErrorMessage"/>
-    <classEntry path="airsqlite.errors.messages.ErrorID"/>
-    <classEntry path="airsqlite.interfaces.IASLStatement"/>
+    <classEntry path="airdatabase.errors.throwError"/>
+    <classEntry path="airdatabase.errors.messages.IllegalStatementErrorMessage"/>
+    <classEntry path="airdatabase.errors.messages.ErrorID"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>
-    <namespaceManifestEntry manifest="manifest.xml" namespace="https://github.com/marckassay/airsqlite"/>
+    <namespaceManifestEntry manifest="manifest.xml" namespace="https://github.com/marckassay/airdatabase"/>
   </namespaceManifests>
 </flexLibProperties>

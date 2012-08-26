@@ -1,19 +1,17 @@
 package
 {
-	import airsqlite.AirSQLite;
-	
-	import tests.airsqlite.ASLStatementTest;
-	import tests.airsqlite.AirSQLiteTest;
-	import tests.airsqlite.core.DataConnectorInSyncModeTest;
-	import tests.airsqlite.core.DataManipulatorInSyncModeTest;
-	import tests.airsqlite.core.TransactionQueueManagerTest;
-	import tests.airsqlite.errors.ErrorCreatorTest;
-	import tests.airsqlite.errors.ThrowErrorTest;
-	import tests.airsqlite.schema.DefaultTableTest;
-	import tests.airsqlite.statement.InsertDelegateTest;
-	import tests.airsqlite.statement.RemoveDelegateTest;
-	import tests.airsqlite.statement.SelectDelegateTest;
-	import tests.airsqlite.statement.UpdateDelegateTest;
+	import tests.airdatabase.ADBStatementTest;
+	import tests.airdatabase.AirDatabaseTest;
+	import tests.airdatabase.core.DataConnectorInSyncModeTest;
+	import tests.airdatabase.core.DataManipulatorInSyncModeTest;
+	import tests.airdatabase.core.TransactionQueueManagerTest;
+	import tests.airdatabase.errors.ErrorCreatorTest;
+	import tests.airdatabase.errors.ThrowErrorTest;
+	import tests.airdatabase.schema.DefaultTableTest;
+	import tests.airdatabase.statement.InsertDelegateTest;
+	import tests.airdatabase.statement.RemoveDelegateTest;
+	import tests.airdatabase.statement.SelectDelegateTest;
+	import tests.airdatabase.statement.UpdateDelegateTest;
 	
 	
 	[Suite]
@@ -30,8 +28,8 @@ package
 		public var t7:UpdateDelegateTest;
 		public var t8:RemoveDelegateTest;
 		
-		public var t9:ASLStatementTest;
-		public var t10:tests.airsqlite.AirSQLiteTest;
+		public var t9:ADBStatementTest;
+		public var t10:tests.airdatabase.AirDatabaseTest;
 		
 		public var t11:ThrowErrorTest;
 		public var t12:ErrorCreatorTest;
