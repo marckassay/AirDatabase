@@ -1,36 +1,36 @@
-# AirSQLite
+# AirDatabase
 
 A Flex project that gives Flex AIR applications the ability to access their local SQLite databases easily.  With just a few lines of code, it allows applications to create a SQLite database file with table(s) and perform SELECT, INSERT, UPDATE and DELETE operations in a synchronous connection.  So there is no need to listen for events, data is returned instantly!   
 
-Below is code taken from Example_101.mxml file from the examples project, which shows AirSQLite in its simplest use:
+Below is code taken from Example_101.mxml file from the examples project, which shows AirDatabase in its simplest use:
 
 	<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
 						   xmlns:s="library://ns.adobe.com/flex/spark" 
 						   xmlns:mx="library://ns.adobe.com/flex/mx" 
-						   xmlns:asl="https://github.com/marckassay/airsqlite"
+						   xmlns:adb="https://github.com/marckassay/airdatabase"
 						   applicationComplete="applicationCompleteHandler(event)">
 		
 		<fx:Declarations>
-			<asl:AirSQLite id="sql">
-				<asl:config>
-					<asl:ASLConfig uri="atlasshrugged.db">
-						<asl:tables>
-							<asl:DefaultTable id="Characters">
-								<asl:columns>
-									<asl:DefaultColumn id="key"			dataType="NUMERIC"/>
-									<asl:DefaultColumn id="firstName"	dataType="TEXT" />
-									<asl:DefaultColumn id="lastName"	dataType="TEXT"/>
-								</asl:columns>
-							</asl:DefaultTable>
-						</asl:tables>
-					</asl:ASLConfig>
-				</asl:config>
-			</asl:AirSQLite>
+			<adb:AirDatabase id="sql">
+				<adb:config>
+					<adb:ADBConfig uri="atlasshrugged.db">
+						<adb:tables>
+							<adb:DefaultTable id="Characters">
+								<adb:columns>
+									<adb:DefaultColumn id="key"			dataType="NUMERIC"/>
+									<adb:DefaultColumn id="firstName"	dataType="TEXT" />
+									<adb:DefaultColumn id="lastName"	dataType="TEXT"/>
+								</adb:columns>
+							</adb:DefaultTable>
+						</adb:tables>
+					</adb:ADBConfig>
+				</adb:config>
+			</adb:AirDatabase>
 		</fx:Declarations>
 		
 		<fx:Script>
 			<![CDATA[
-				import airsqlite.filters.equals;
+				import airdatabase.filters.equals;
 				
 				import mx.events.FlexEvent;
 				
@@ -53,7 +53,7 @@ Below is code taken from Example_101.mxml file from the examples project, which 
 			]]>
 		</fx:Script>
 		
-		<s:DataGrid top="20" left="20" right="20" bottom="20" dataProvider="{characters}">
+		<s:DataGrid top="20" left="20" right="20" bottom="20" dataProvider="{characters}" >
 			<s:columns>
 				<s:ArrayList>
 					<s:GridColumn
@@ -71,26 +71,26 @@ Below is code taken from Example_101.mxml file from the examples project, which 
 		
 	</s:WindowedApplication>
 
-This AirSQLite consists of 3 Flex projects:
+This AirDatabase consists of 3 Flex projects:
 
-* AirSQLite
-* AirSQLite-examples
-* AirSQLite-unit-test
+* AirDatabase
+* AirDatabase-examples
+* AirDatabase-unit-test
 
-## AirSQLite
+## AirDatabase
 
 Contains the source code for the project.  The output file for this project is a SWC.
 
-## AirSQLite-examples
+## AirDatabase-examples
 
-Will contain examples to assist developers on how to use AirSQLite with their projects.
+Will contain examples to assist developers on how to use AirDatabase with their projects.
 
-## AirSQLite-unit-test
+## AirDatabase-unit-test
 
-The AirSQLite project was and will continue to be developed using unit tests.  AirSQLite-unit-test contains all unit tests for this project.
+The AirDatabase project was and will continue to be developed using unit tests.  AirDatabase-unit-test contains all unit tests for this project.
 
 ### Roadmap: Short-term
-* Have AirSQLite to be used in Flash projects too.
+* Have AirDatabase to be used in Flash projects too.
 * Create an Apache Ant build script so that it will output a Flex and Flash SWC file.
 * Allow databases to be encrypted.
 
