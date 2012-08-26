@@ -1,33 +1,21 @@
 # AirSQLite
 
-A Flex project that gives Flex AIR applications the ability to access their local SQLite databases easily.  
+A Flex project that gives Flex AIR applications the ability to access their local SQLite databases easily.  With just a few lines of code, it allows applications to create a SQLite database file with table(s) and perform SELECT, INSERT, UPDATE and DELETE operations in a synchronous connection.  So there is no need to listen for events; data is returned instantly!   
 
-Below is file Example_101 from the examples project, which shows AirSQLite in its simpilest use:
+Below is code taken from Example_101.mxml file from the examples project, which shows AirSQLite in its simplest use:
 
-	<!---
-		<p><b>Example_101:</b></p>
-
-		<p>This example creates a database in synchronous mode with a 3 column table.
-		When <code>FlexEvent.APPLICATION_COMPLETE</code> event is dispatched, it will insert 
-		a record then retrieve that record by using the key field.  With the returned data, it 
-		will create an <code>ArrayList</code> to be used in the <code>DataGrid</code>.</p>
-	-->
 	<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
 						   xmlns:s="library://ns.adobe.com/flex/spark" 
 						   xmlns:mx="library://ns.adobe.com/flex/mx" 
 						   xmlns:asl="https://github.com/marckassay/airsqlite"
-						   applicationComplete="applicationCompleteHandler(event)"
-						   >
+						   applicationComplete="applicationCompleteHandler(event)">
 		
 		<fx:Declarations>
-			<asl:AirSQLite id="sql"
-						   >
+			<asl:AirSQLite id="sql">
 				<asl:config>
-					<asl:ASLConfig uri="atlasshrugged.db"
-								   >
+					<asl:ASLConfig uri="atlasshrugged.db">
 						<asl:tables>
-							<asl:DefaultTable id="Characters"
-											  >
+							<asl:DefaultTable id="Characters">
 								<asl:columns>
 									<asl:DefaultColumn id="key"			dataType="NUMERIC"/>
 									<asl:DefaultColumn id="firstName"	dataType="TEXT" />
@@ -65,12 +53,7 @@ Below is file Example_101 from the examples project, which shows AirSQLite in it
 			]]>
 		</fx:Script>
 		
-		<s:DataGrid
-			top="20"
-			left="20"
-			right="20"
-			bottom="20"
-			dataProvider="{characters}" >
+		<s:DataGrid top="20" left="20" right="20" bottom="20" dataProvider="{characters}">
 			<s:columns>
 				<s:ArrayList>
 					<s:GridColumn
@@ -100,7 +83,7 @@ Contains the source code for the project.  The output file for this project is a
 
 ## AirSQLite-examples
 
-Will contain examples to assit developers on how to use AirSQLite with their projects.
+Will contain examples to assist developers on how to use AirSQLite with their projects.
 
 ## AirSQLite-unit-test
 
@@ -115,5 +98,5 @@ The AirSQLite project was and will continue to be developed using unit tests.  A
 * Use Hamcrest Matcher "like" methods for transactions, such as: containsString, startsWith and greaterThan. 
  
 ### Thanks to...
-* Drew Bourne for your Mockolate and Hamcrest projects.
+* Drew Bourne for your [Mockolate](https://github.com/drewbourne/mockolate) and [Hamcrest](https://github.com/drewbourne/hamcrest-as3) projects.
 * To all Flex engineers who contributed to Flex and FlexUnit.
