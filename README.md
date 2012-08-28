@@ -1,8 +1,8 @@
 # AirDatabase
 
-AirDatabase is a Flex project that gives Flex AIR applications the ability to access their local SQLite databases easily.  With just a few lines of code, it allows applications to create a SQLite database file with tables and perform SELECT, INSERT, UPDATE and DELETE operations in a synchronous connection.  With a small amount of code to configure AirDatabase, you can start making CRUD operations synchronously. 
+AirDatabase is a Flex project that gives Flex AIR applications the ability to access its local SQLite database with ease.  With a small amount of code to configure AirDatabase, it allows you to create a SQLite database file with tables which you can then start to perform CRUD operations synchronously. 
 
-Below is code taken from Example_101.mxml file from the examples project.  This snippet of code instantiates AirDatabase with one table and three columns:
+Below is code taken from Example_101.mxml file from the AirDatabase-examples project.  This snippet of code instantiates AirDatabase with one table and three columns:
 
 	<fx:Declarations>
 		<adb:AirDatabase id="sql">
@@ -27,7 +27,6 @@ And this snippet references the AirDatabase instance from above and then perform
 	<fx:Script>
 		<![CDATA[
 			import airdatabase.filters.equals;
-			
 			import mx.events.FlexEvent;
 			
 			[Bindable]
@@ -43,7 +42,9 @@ And this snippet references the AirDatabase instance from above and then perform
 				// select record with the key field...
 				var results:SQLResult = sql.select().field('key', equals(3)).from('Characters');
 				
-				// use results.data to create a new Arraylist for perhaps DataGrid...
+				trace(results.data[0].firstName); //output: Dagny
+				
+				// use results.data to create a new Arraylist for perhaps a DataGrid...
 				characters = new ArrayList(results.data);
 			}
 		]]>
