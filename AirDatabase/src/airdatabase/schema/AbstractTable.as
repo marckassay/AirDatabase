@@ -17,7 +17,7 @@ package airdatabase.schema
 		 * This is to be as an alias to the first (or in some cases, only) table created.
 		 * It can be accessed without using the AirDatabase <code>table</code> method.
 		 * 
-		 * @see airdatabase.AirDatabase#table()
+		 *	@see airdatabase.core.DataConnector#checkToCreateTables()
 		 */
 		asl_internal static const DEFAULT_TABLE:String = "https://github.com/marckassay/airdatabase/default";
 		
