@@ -69,8 +69,6 @@ Will contain examples to assist developers on how to use AirDatabase with their 
 The AirDatabase project was and will continue to be developed with unit tests.  AirDatabase-unit-test contains all unit tests for this project.
 
 ### Roadmap: Short-term
-* Have AirDatabase to be used in Flash projects too.
-* Create an Apache Ant build script so that it will output a Flex and Flash SWC file.
 * Allow databases to be encrypted.
 
 ### Roadmap: Long-term
