@@ -15,4 +15,16 @@
 		<nature>com.adobe.flexbuilder.project.flexlibnature</nature>
 		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>README.md</name>
+			<type>1</type>
+			<location>$%7BPARENT-1-PROJECT_LOC%7D/README.md</location>
+		</link>
+		<link>
+			<name>build.xml</name>
+			<type>1</type>
+			<location>$%7BPARENT-1-PROJECT_LOC%7D/build.xml</location>
+		</link>
+	</linkedResources>
 </projectDescription>

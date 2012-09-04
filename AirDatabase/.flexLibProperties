@@ -22,7 +22,6 @@
     <classEntry path="airdatabase.statement.delegates.RemoveDelegate"/>
     <classEntry path="airdatabase.errors.FilterError"/>
     <classEntry path="airdatabase.errors.NotImplementedError"/>
-    <classEntry path="airsqlite.errors.messages.StatementSyntaxMessage"/>
     <classEntry path="airdatabase.errors.IllegalStatementError"/>
     <classEntry path="airdatabase.errors.messages.BaseErrorMessage"/>
     <classEntry path="airdatabase.errors.messages.IErrorMessage"/>

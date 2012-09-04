@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <componentPackage>
 
-	<component id="AirDatabase" 		class="airdatabase.AirDatabase" />
+	<component id="AirDatabase" 	class="airdatabase.AirDatabase" />
 	<component id="ADBConfig" 		class="airdatabase.ADBConfig" />
 	<component id="ADBEvent" 		class="airdatabase.ADBEvent" />
 		
