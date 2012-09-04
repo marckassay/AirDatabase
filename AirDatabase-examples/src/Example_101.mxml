@@ -15,7 +15,7 @@
 					   >
 	
 	<fx:Declarations>
-		<adb:AirDatabase id="sql"
+		<adb:AirDatabase id="airdb"
 					   >
 			<adb:config>
 				<adb:ADBConfig uri="atlasshrugged.db"
@@ -47,12 +47,12 @@
 			protected function applicationCompleteHandler(event:FlexEvent):void
 			{
 				// insert a record by setting value to the key, firstName and lastName fields on the Characters table... 
-				sql.insert().field('key',		equals(3)).
-							 field('firstName',	equals('Dagny')).
-							 field('lastName',	equals('Taggart')).to('Characters');
+				airdb.insert().field('key',			equals(3)).
+							   field('firstName',	equals('Dagny')).
+							   field('lastName',	equals('Taggart')).to('Characters');
 				
 				// select record with the key field...
-				var results:SQLResult = sql.select().field('key', equals(3)).from('Characters');
+				var results:SQLResult = airdb.select().field('key', equals(3)).from('Characters');
 				
 				// use results.data to create a new Arraylist for DataGrid below...
 				characters = new ArrayList(results.data);
