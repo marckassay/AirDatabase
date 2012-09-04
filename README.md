@@ -5,7 +5,7 @@ AirDatabase is a Flex project that gives Flex AIR applications the ability to ac
 Below is code taken from Example_101.mxml file from the AirDatabase-examples project.  This snippet of code instantiates AirDatabase with one table and three columns:
 
 	<fx:Declarations>
-		<adb:AirDatabase id="sql">
+		<adb:AirDatabase id="airdb">
 			<adb:config>
 				<adb:ADBConfig uri="atlasshrugged.db">
 					<adb:tables>
@@ -35,12 +35,12 @@ And this snippet references the AirDatabase instance from above and then perform
 			protected function applicationCompleteHandler(event:FlexEvent):void
 			{
 				// insert a record by setting value to the key, firstName and lastName fields on the Characters table... 
-				sql.insert().field('key',		equals(3)).
-							 field('firstName',	equals('Dagny')).
-							 field('lastName',	equals('Taggart')).to('Characters');
+				airdb.insert().field('key',			equals(3)).
+							   field('firstName',	equals('Dagny')).
+							   field('lastName',	equals('Taggart')).to('Characters');
 				
 				// select record with the key field...
-				var results:SQLResult = sql.select().field('key', equals(3)).from('Characters');
+				var results:SQLResult = airdb.select().field('key', equals(3)).from('Characters');
 				
 				trace(results.data[0].firstName); //output: Dagny
 				
