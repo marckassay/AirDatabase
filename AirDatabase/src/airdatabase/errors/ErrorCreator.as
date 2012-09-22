@@ -3,6 +3,7 @@ package airdatabase.errors
 	import airdatabase.core.asl_unit_testing;
 	import airdatabase.errors.messages.FilterErrorMessage;
 	import airdatabase.errors.messages.IErrorMessage;
+	import airdatabase.errors.messages.IncorrectTypeErrorMessage;
 	import airdatabase.errors.messages.NotImplementedErrorMessage;
 	
 	import asx.string.replaceTokens;
@@ -38,6 +39,10 @@ package airdatabase.errors
 				
 				case 'airdatabase.errors.messages::IllegalStatementErrorMessage':
 					product = new IllegalStatementError(description, message.id);
+					break;
+				
+				case 'airdatabase.errors.messages::IncorrectTypeErrorMessage':
+					product = new IncorrectTypeError(description, message.id);
 					break;
 			}
 			

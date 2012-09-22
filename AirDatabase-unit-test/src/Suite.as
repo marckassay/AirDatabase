@@ -1,6 +1,7 @@
 package
 {
 	import tests.airdatabase.ADBStatementTest;
+	import tests.airdatabase.AirDatabaseEncryptionTest;
 	import tests.airdatabase.AirDatabaseTest;
 	import tests.airdatabase.core.DataConnectorInSyncModeTest;
 	import tests.airdatabase.core.DataManipulatorInSyncModeTest;
@@ -29,9 +30,10 @@ package
 		public var t8:RemoveDelegateTest;
 		
 		public var t9:ADBStatementTest;
-		public var t10:tests.airdatabase.AirDatabaseTest;
+		public var t10:AirDatabaseTest;
+		public var t11:AirDatabaseEncryptionTest;
 		
-		public var t11:ThrowErrorTest;
-		public var t12:ErrorCreatorTest;
+		public var t12:ThrowErrorTest;
+		public var t13:ErrorCreatorTest;
 	}
 }
