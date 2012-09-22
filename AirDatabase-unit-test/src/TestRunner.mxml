@@ -6,20 +6,21 @@
 					   creationComplete="startTesting()">
 	<fx:Script>
 		<![CDATA[
-		import org.flexunit.listeners.UIListener;
-		import org.flexunit.runner.FlexUnitCore;
-		
-		private var core:FlexUnitCore;
-		public function startTesting():void 
-		{
-			core = new FlexUnitCore();
-			core.addListener( uiListener );
-			core.run( Suite );
-		}
-		
+			import org.flexunit.listeners.UIListener;
+			import org.flexunit.runner.FlexUnitCore;
+			
+			private var core:FlexUnitCore;
+				
+			public function startTesting():void 
+			{
+				core = new FlexUnitCore();
+				core.addListener(new UIListener(uiListener));
+				core.run( Suite );
+			}
+			
 		]]>
 	</fx:Script>
-		
+	
 	<ns:TestRunnerBase id="uiListener" width="100%" height="100%" />
-		
+	
 </s:WindowedApplication>
