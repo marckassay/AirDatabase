@@ -3,36 +3,40 @@
 	<property environment="env" />
 
 	<property name="FLEX_HOME" location="${env.FLEX_HOME}" />
-		
+
 	<property name="builddir" location="${basedir}/build" />
 
 	<property file="${builddir}/build.properties" />
 
+	<property name="targetdir" location="${basedir}/target" />
+
 	<property name="adbdir" location="${basedir}/AirDatabase" />
-	
+
+	<property name="adbunittestdir" location="${basedir}/AirDatabase-unit-test" />
+
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
-	
-	<target name="clean" >
+
+	<target name="clean">
 		<echo>Cleaning and creating build directory...</echo>
-		
-		<delete dir="${adbdir}/build/target" />
-	
-		<mkdir dir="${adbdir}/build/target" />
-		
+
+		<delete dir="${targetdir}" />
+
+		<mkdir dir="${targetdir}" />
+
 	</target>
 
 	<target name="swc" depends="clean">
 		<echo>Compiling AirDataBase_v${MAJOR_NUMBER}.${MINOR_NUMBER}.swc file...</echo>
-		
+
 		<!---
 		@see http://help.adobe.com/en_US/flex/using/WS2db454920e96a9e51e63e3d11c0bf69084-7a80.html
 		-->
-		<compc output="${builddir}/target/AirDataBase_v${MAJOR_NUMBER}.${MINOR_NUMBER}.swc">
+		<compc output="${targetdir}/AirDataBase_v${MAJOR_NUMBER}.${MINOR_NUMBER}.swc">
 			<source-path path-element="${adbdir}/src" />
-				
+
 			<namespace uri="https://github.com/marckassay/airdatabase" manifest="${adbdir}/src/manifest.xml" />
 			<include-namespaces>https://github.com/marckassay/airdatabase</include-namespaces>
-			
+
 			<include-sources dir="${adbdir}/src">
 				<include name="**/*.as" />
 			</include-sources>
@@ -40,7 +44,7 @@
 			<external-library-path append="true" dir="${FLEX_HOME}/frameworks/libs">
 				<include name="*.swc" />
 			</external-library-path>
-			
+
 			<external-library-path append="true" dir="${FLEX_HOME}/frameworks/libs/air">
 				<include name="*.swc" />
 			</external-library-path>
@@ -51,6 +55,6 @@
 		</compc>
 	</target>
 
-	<target name="start" depends="swc"/>
+	<target name="start" depends="swc" />
 
 </project>
