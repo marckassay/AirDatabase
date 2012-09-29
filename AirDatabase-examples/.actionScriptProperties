@@ -17,6 +17,9 @@
     <application path="Example_101.mxml">
       <airExcludes/>
     </application>
+    <application path="Example_102.mxml">
+      <airExcludes/>
+    </application>
   </applications>
   <modules/>
   <buildCSSFiles/>

@@ -138,7 +138,7 @@ package airdatabase
 		 * 
 		 * @see encryptionKey
 		 */
-		[Inspectable(category="General", enumeration="false, true", defaultValue="false")]
+		[Inspectable(category="General", defaultValue="false")]
 		public function get enableEncryption():Boolean
 		{
 			return _enableEncryption;
