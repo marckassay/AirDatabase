@@ -49,7 +49,7 @@ package tests.airdatabase.core
 		[Test]
 		public function testForQueuedTransactionsLengthBecomesZero():void 
 		{
-			generateStatements(10);	
+			generateStatements(10);
 			
 			mock(connector).method('executeStatement').args( instanceOf(ADBStatement) ).callsWithInvocation(function(invocation:Invocation):void 
 			{
