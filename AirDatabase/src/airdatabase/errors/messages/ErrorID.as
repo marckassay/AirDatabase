@@ -9,5 +9,6 @@ package airdatabase.errors.messages
 		static public var NotImplementedErrorMessage_ERROR_ID:Number			 			= 3000;
 		
 		static public var IncorrectTypeErrorMessage_ERROR_ID:Number			 				= 4000;
+		static public var IncorrectValueErrorMessage_ERROR_ID:Number						= 4001;
 	}
 }

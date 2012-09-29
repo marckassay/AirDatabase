@@ -44,6 +44,10 @@ package airdatabase.errors
 				case 'airdatabase.errors.messages::IncorrectTypeErrorMessage':
 					product = new IncorrectTypeError(description, message.id);
 					break;
+				
+				case 'airdatabase.errors.messages::IncorrectValueErrorMessage':
+					product = new IncorrectValueError(description, message.id);
+					break;
 			}
 			
 			return product;

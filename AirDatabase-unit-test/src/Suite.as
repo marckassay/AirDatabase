@@ -1,5 +1,6 @@
 package
 {
+	import tests.airdatabase.ADBConfigTest;
 	import tests.airdatabase.ADBStatementTest;
 	import tests.airdatabase.AirDatabaseEncryptionTest;
 	import tests.airdatabase.AirDatabaseTest;
@@ -35,5 +36,7 @@ package
 		
 		public var t12:ThrowErrorTest;
 		public var t13:ErrorCreatorTest;
+		
+		public var t14:ADBConfigTest;
 	}
 }

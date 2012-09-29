@@ -96,7 +96,7 @@ package airdatabase.core
 			// is AirDatabase configured for sync connection...
 			if(config.asyncConnection == false)
 			{
-				sql.open( dataBaseFile, sqlMode, false, 1024);
+				sql.open( dataBaseFile, sqlMode, false, 1024, config.encryptionKey);
 				
 				// unlike in the else-if clause below, just invoke postConnected directly...
 				postConnected();
@@ -105,7 +105,7 @@ package airdatabase.core
 			{
 				sender.startListeningForConnection(sql, postConnected);
 				
-				sql.openAsync( dataBaseFile, sqlMode, null, false, 1024);
+				sql.openAsync( dataBaseFile, sqlMode, null, false, 1024, config.encryptionKey);
 			}
 		}
 		
@@ -121,7 +121,7 @@ package airdatabase.core
 		}
 		
 		// TODO:  This is a CRUD operation; modify its style so that it
-		// adheres with CRUDOperator style and then move it into CRUDOperator.
+		// adheres with DataManipulator style and then move it into DataManipulator.
 		/**
 		 * <p>This method will iterate thru all of the tables declared in the 
 		 * ASQLiteConfig's <code>tables</code> property and will check to see

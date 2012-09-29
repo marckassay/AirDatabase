@@ -48,7 +48,7 @@ package tests.airdatabase
 		public function testThatExceptionIsThrownForIncorrectEncrytionKey():void
 		{
 			fixture.config = getASQLiteConfig();
-
+			
 			fixture.insert().field('first', equals('Dagny')).field('last', equals('Taggart')).field('key', equals(3)).to('Characters');
 			
 			// close database file and null the fixture, but don't delete the db file...
@@ -61,18 +61,17 @@ package tests.airdatabase
 			
 			// create a new database session with encryption set to false...
 			fixture = new AirDatabase();
-			getASQLiteConfig(false);
+			fixture.config = getASQLiteConfig(false);
 			
 			// exception should be thrown since the database is encrypted.
 			var results:SQLResult = fixture.select().field('first', equals('Dagny')).field('last', equals('Taggart')).from('Characters');
-			
-			assertNull(results);
 		}
 		
 		[Test(expects="airdatabase.errors.IncorrectTypeError")]
 		public function ensureThatIncorrectTypeErrorIsThrown():void
 		{
-			fixture.config = getASQLiteConfig(true, new DisplayObject());
+			var incorrecttype:int = 123456789;
+			fixture.config = getASQLiteConfig(false,incorrecttype);
 		}
 		
 		[Test]
@@ -97,7 +96,10 @@ package tests.airdatabase
 			config.asyncConnection 	 = false;
 			config.tables 			 = getTables();
 			config.enableEncryption	 = true;
-			config.encryptionKey	 = key;
+			
+			if(encrypt == false)
+				config.encryptionKey	 = key;
+			
 			config.uri 				 = DATA_BASE_FILE;
 			
 			return config;
