@@ -34,6 +34,7 @@
     <classEntry path="airdatabase.errors.throwError"/>
     <classEntry path="airdatabase.errors.messages.IllegalStatementErrorMessage"/>
     <classEntry path="airdatabase.errors.messages.ErrorID"/>
+    <classEntry path="airdatabase.els.EncryptedLocalStorage"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

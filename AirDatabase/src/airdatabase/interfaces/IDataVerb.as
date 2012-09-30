@@ -1,5 +1,6 @@
 package airdatabase.interfaces
 {
+	[ExcludeClass]
 	public interface IDataVerb
 	{
 		function select(result:Function=null, status:Function=null):IDataNoun;

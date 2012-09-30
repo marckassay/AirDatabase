@@ -78,6 +78,8 @@ package tests.airdatabase
 		}
 		
 		[Test(description="At this point in development I'm not sure if its possible to tell if a SQLite is encrypted.  We create 2 sessions here using the same uid.")]
+		[Ignore]
+		// TODO: this is re-encrypting database file with the same UID. this will be a future release hence the Ignore tag.
 		public function testThatTwoSessionWithSameUIDAreSuccessful():void
 		{
 			var uid:String = UIDUtil.createUID();
@@ -153,7 +155,7 @@ package tests.airdatabase
 			config.enableEncryption	 = true;
 			
 			if(encrypt == false)
-				config.encryptionKey	 = key;
+				config.encryptionKey = key;
 			
 			config.uri 				 = DATA_BASE_FILE;
 			

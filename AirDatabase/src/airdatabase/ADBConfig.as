@@ -1,6 +1,7 @@
 package airdatabase
 {
 	import airdatabase.core.asl_unit_testing;
+	import airdatabase.els.EncryptedLocalStorage;
 	import airdatabase.errors.messages.IncorrectTypeErrorMessage;
 	import airdatabase.errors.messages.IncorrectValueErrorMessage;
 	import airdatabase.errors.throwError;
@@ -87,8 +88,10 @@ package airdatabase
 		 * data types: String or ByteArray.  If the value is a String, a ByteArray will be created with
 		 * it.  If the value is a ByteArray, then that value will be used directly to encrypt the database.
 		 */
+		// TODO: move the logic that is in the setter, to EncryptedLocalStorage and update test-cases.
 		public function get encryptionKey():*
 		{
+			_encryptionKey = EncryptedLocalStorage.getEncryptionKey();
 			return _encryptionKey;
 		}
 		public function set encryptionKey(value:*):void
@@ -103,6 +106,7 @@ package airdatabase
 				}
 				
 				_encryptionKey = getByteArrayKey(value);
+				EncryptedLocalStorage.setEncryptionKey(_encryptionKey);
 				
 				enableEncryption = true;
 			}
@@ -113,17 +117,16 @@ package airdatabase
 					throwError(IncorrectValueErrorMessage.INCORRECT_VALUE, {type: 'ByteArray', condition: 'The length must be 16 in bytes.'});
 					
 				_encryptionKey = value;
+				EncryptedLocalStorage.setEncryptionKey(_encryptionKey);
 				
 				enableEncryption = true;
 			}
 			else if((value == null) && (enableEncryption == true))
 			{
-				// assign the backing field instead of the mutator.  since 
-				// the _encryptionKey field is assigned after this conditional,
-				// it will cause an undesire behavior.
 				_encryptionKey = null;
+				EncryptedLocalStorage.setEncryptionKey(null);
 				
-				_enableEncryption = false;
+				enableEncryption = false;
 			}
 			else
 			{

@@ -1,8 +1,7 @@
 package airdatabase.schema
 {
 	import airdatabase.interfaces.IDataColumn;
-
-
+	
 	public class DefaultColumn extends AbstractColumn
 	{
 		/**

@@ -12,6 +12,7 @@ package airdatabase.statement.delegates
 	/**
 	 * All Select queries will not be setting/mutating any field.
 	 */
+	[ExcludeClass]
 	public class SelectDelegate extends ADBStatementDelegate
 	{
 		override public function record(reference:*):IADBStatement

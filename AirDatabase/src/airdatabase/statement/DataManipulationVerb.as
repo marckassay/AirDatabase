@@ -1,5 +1,6 @@
 package airdatabase.statement
 {
+	[ExcludeClass]
 	final public class DataManipulationVerb
 	{
 		static public const SELECT:DataManipulationVerb = new DataManipulationVerb("SELECT");

@@ -7,7 +7,6 @@ package airdatabase.schema
 
 	use namespace asl_internal;
 	
-	
 	public class DefaultTable extends AbstractTable
 	{
 		private var _manipulator:DataManipulator;

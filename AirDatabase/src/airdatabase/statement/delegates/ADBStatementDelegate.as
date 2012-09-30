@@ -7,6 +7,7 @@ package airdatabase.statement.delegates
 	
 	import flash.errors.IllegalOperationError;
 	
+	[ExcludeClass]
 	public class ADBStatementDelegate implements IADBStatement
 	{	
 		private var _tableName:String;

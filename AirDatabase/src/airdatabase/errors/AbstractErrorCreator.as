@@ -4,7 +4,7 @@ package airdatabase.errors
 	
 	import flash.errors.IllegalOperationError;
 	
-	
+	[ExcludeClass]
 	public class AbstractErrorCreator
 	{
 		public function throwError(message:IErrorMessage, data:Object=null):Error

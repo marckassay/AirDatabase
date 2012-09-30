@@ -9,6 +9,7 @@ package airdatabase.statement.delegates
 	import airdatabase.interfaces.IADBStatementDelegate;
 	import airdatabase.statement.FieldObject;
 	
+	[ExcludeClass]
 	public class InsertDelegate extends ADBStatementDelegate
 	{
 		override public function record(reference:*):IADBStatement
