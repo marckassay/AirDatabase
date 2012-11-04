@@ -78,8 +78,6 @@ package tests.airdatabase
 		}
 		
 		[Test(description="At this point in development I'm not sure if its possible to tell if a SQLite is encrypted.  We create 2 sessions here using the same uid.")]
-		[Ignore]
-		// TODO: this is re-encrypting database file with the same UID. this will be a future release hence the Ignore tag.
 		public function testThatTwoSessionWithSameUIDAreSuccessful():void
 		{
 			var uid:String = UIDUtil.createUID();
@@ -105,6 +103,61 @@ package tests.airdatabase
 
 			assertEquals('Dagny', results.data[0].first);
 			assertEquals('Taggart', results.data[0].last);
+		}
+		
+		
+		[Test(description="Make sure that AirDataBase is able to work correctly from a previous session that encrypted it.")]
+		public function testThatSecondSessionIsSuccessfulAfterFirstSessionEncryptedIt():void
+		{
+			var uid:String = UIDUtil.createUID();
+			
+			fixture.config = getASQLiteConfig(false, uid);
+			
+			fixture.insert().field('first', equals('Dagny')).field('last', equals('Taggart')).field('key', equals(3)).to('Characters');
+			
+			// close database file and null the fixture, but don't delete the db file...
+			var databaseFile:File = File.applicationStorageDirectory.resolvePath(DATA_BASE_FILE);
+			if(databaseFile.exists == true)
+			{
+				fixture.testManipulator.testSQL.close();
+			}
+			fixture = null;
+			
+			// create a new database session WITHOUT passing a UID.  this will force to retrieve the ELS value...
+			fixture = new AirDatabase();
+			fixture.config = getASQLiteConfig(true);
+			
+			// exception should be thrown since the database is encrypted.
+			var results:SQLResult = fixture.select().field('first', equals('Dagny')).field('last', equals('Taggart')).from('Characters');
+			
+			assertEquals('Dagny', results.data[0].first);
+			assertEquals('Taggart', results.data[0].last);
+		}
+		
+		[Test(expects="flash.errors.SQLError", description="Since AIR encrypts SQLite database by value of a ByteArray and not by reference, this is attempting to reencrypt.  An Error will be thrown.  To reencyrpt, the SQLConnection.reencrypt method must be used.")]
+		public function testThatTwoSessionWithDifferentUIDIsAFailture():void
+		{
+			var uid_a:String = UIDUtil.createUID();
+			var uid_b:String = UIDUtil.createUID();
+			
+			fixture.config = getASQLiteConfig(false, uid_a);
+			
+			fixture.insert().field('first', equals('Dagny')).field('last', equals('Taggart')).field('key', equals(3)).to('Characters');
+			
+			// close database file and null the fixture, but don't delete the db file...
+			var databaseFile:File = File.applicationStorageDirectory.resolvePath(DATA_BASE_FILE);
+			if(databaseFile.exists == true)
+			{
+				fixture.testManipulator.testSQL.close();
+			}
+			fixture = null;
+			
+			// create a new database session with a DIFFERENT uid...
+			fixture = new AirDatabase();
+			fixture.config = getASQLiteConfig(false, uid_b);
+			
+			// exception should be thrown since the database is encrypted.
+			var results:SQLResult = fixture.select().field('first', equals('Dagny')).field('last', equals('Taggart')).from('Characters');
 		}
 		
 		[Test(expects="airdatabase.errors.IncorrectTypeError")]

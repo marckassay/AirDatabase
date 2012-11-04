@@ -62,11 +62,13 @@ package airdatabase.core
 			createInMemoryFile();
 		}
 		
+		/**
+		 * Creates an instance of flash.filesystem.File representing the OS file.  
+		 * The sql.open() or sql.openAsync() will create the actually OS file if
+		 * it doesnt exist.
+		 */ 
 		private function createInMemoryFile():void
 		{
-			// create an instance of flash.filesystem.File representing the OS file.  
-			// the sql.open() or sql.openAsync() will create the actually OS file if
-			// it doesnt exist.
 			dataBaseFile = File.applicationStorageDirectory.resolvePath(config.uri);
 		}
 		
@@ -208,7 +210,7 @@ package airdatabase.core
 					openConnection();
 			}
 			else if(isConnectorReady() == true)
-			{				
+			{
 				executeStatement(statement);
 			}
 			
@@ -268,7 +270,7 @@ package airdatabase.core
 				for each(var statement:ADBStatement in tableStatements)
 				{
 					if(currentStatement === statement)
-					{						
+					{
 						var statementposition:int = tableStatements.indexOf(statement);
 						tableStatements.splice(statementposition, 1);
 						
