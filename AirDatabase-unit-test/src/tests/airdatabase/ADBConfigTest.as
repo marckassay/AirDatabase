@@ -8,6 +8,8 @@ package tests.airdatabase
 	import mx.utils.UIDUtil;
 	
 	import org.flexunit.asserts.assertEquals;
+	import org.flexunit.asserts.assertFalse;
+	import org.flexunit.asserts.assertTrue;
 
 	use namespace asl_unit_testing;
 	
@@ -41,6 +43,32 @@ package tests.airdatabase
 			var results:ByteArray = fixture.getByteArrayKey(UIDUtil.createUID());
 			
 			assertEquals(16, results.length);
+		}
+		
+		[Test]
+		public function testThatEncryptionKeyChangeIsTrue():void
+		{
+			// clear out any exisitng key, if there is one...
+			fixture.enableEncryption = true;
+			fixture.encryptionKey = null;
+			
+			// set the first key...
+			fixture.encryptionKey = UIDUtil.createUID();
+			
+			// set the second key...
+			fixture.encryptionKey = UIDUtil.createUID();
+			
+			assertTrue(fixture.getEncryptionKeyChangedField());
+		}
+		
+		[Test]
+		public function testThatEncryptionKeyChangeIsFalse():void
+		{
+			// clear out any exisitng key, if there is one...
+			fixture.enableEncryption = true;
+			fixture.encryptionKey = null;
+			
+			assertFalse(fixture.getEncryptionKeyChangedField());
 		}
 	}
 }

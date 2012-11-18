@@ -24,6 +24,8 @@ package airdatabase
 		
 		private var _asyncConnection:Boolean;
 		
+		private var _encryptionKeyChanged:Boolean;
+		
 		private var _tables:Vector.<IDataVerb>;
 		
 		/**
@@ -32,6 +34,8 @@ package airdatabase
 		public function ADBConfig()
 		{
 			_asyncConnection = false;
+			
+			_encryptionKeyChanged = false;
 		}
 		
 		protected function getByteArrayKey(value:String=null):ByteArray
@@ -74,6 +78,12 @@ package airdatabase
 		}
 		
 		
+		public function get encryptionKeyChanged():Boolean
+		{
+			return _encryptionKeyChanged;
+		}
+		
+		
 		[Inspectable(category="General", enumeration="false, true", defaultValue="false")]
 		public function get asyncConnection():Boolean
 		{
@@ -100,6 +110,8 @@ package airdatabase
 		}
 		public function set encryptionKey(value:*):void
 		{
+			var previousKey:ByteArray = encryptionKey as ByteArray;
+			
 			if(value is String)
 			{
 				// it must be a UID String...
@@ -136,6 +148,35 @@ package airdatabase
 			{
 				throwError(IncorrectTypeErrorMessage.INCORRECT_TYPE, {possibleTypes: 'String and ByteArray'});
 			}
+			
+			checkForEncryptionKeyChange(previousKey);
+		}
+		
+		/**
+		 * This method checks to see if <code>DataConnector</code> needs to be reencrypted.  If <code>previousKey</code> is 
+		 * null, then this method will set <code>encryptionKeyChanged</code> to <code>false</code>.
+		 */
+		private function checkForEncryptionKeyChange(previousKey:ByteArray):void
+		{
+			var currentKey:ByteArray = encryptionKey as ByteArray;
+			if((previousKey != null) && (currentKey == null))
+			{
+				// throw error...this may be that the developer is attempting to unencrypt a 
+				// encrypted database.  this is not allowed by AIR.
+				_encryptionKeyChanged = false;
+			}
+			else if((previousKey == null) && (currentKey == null))
+			{
+				_encryptionKeyChanged = false;
+			}
+			else if((previousKey != null) && (previousKey != currentKey))
+			{
+				_encryptionKeyChanged = true;
+			}
+			else
+			{
+				_encryptionKeyChanged = false;
+			}
 		}
 		
 		/**
@@ -167,6 +208,11 @@ package airdatabase
 		asl_unit_testing function getByteArrayKey(value:String=null):ByteArray
 		{
 			return getByteArrayKey(value);
+		}
+		
+		asl_unit_testing function getEncryptionKeyChangedField():Boolean
+		{
+			return _encryptionKeyChanged;
 		}
 	}
 }
