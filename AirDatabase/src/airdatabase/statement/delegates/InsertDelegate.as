@@ -2,11 +2,9 @@ package airdatabase.statement.delegates
 {
 	import airdatabase.ADBStatement;
 	import airdatabase.errors.messages.FilterErrorMessage;
-	import airdatabase.errors.messages.NotImplementedErrorMessage;
 	import airdatabase.errors.throwError;
 	import airdatabase.filters.Filter;
 	import airdatabase.interfaces.IADBStatement;
-	import airdatabase.interfaces.IADBStatementDelegate;
 	import airdatabase.statement.FieldObject;
 	
 	[ExcludeClass]
@@ -14,8 +12,6 @@ package airdatabase.statement.delegates
 	{
 		override public function record(reference:*):IADBStatement
 		{
-			throwError( NotImplementedErrorMessage.ERROR );
-			
 			super.record(reference);
 			
 			return null;

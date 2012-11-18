@@ -156,7 +156,7 @@ package tests.airdatabase
 			fixture = new AirDatabase();
 			fixture.config = getASQLiteConfig(false, uid_b);
 			
-			// exception should be thrown since the database is encrypted.
+			// exception should be thrown since the database is encrypted, but with a different encryption key.
 			var results:SQLResult = fixture.select().field('first', equals('Dagny')).field('last', equals('Taggart')).from('Characters');
 		}
 		

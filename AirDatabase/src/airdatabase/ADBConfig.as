@@ -4,6 +4,7 @@ package airdatabase
 	import airdatabase.els.EncryptedLocalStorage;
 	import airdatabase.errors.messages.IncorrectTypeErrorMessage;
 	import airdatabase.errors.messages.IncorrectValueErrorMessage;
+	import airdatabase.errors.messages.NotImplementedErrorMessage;
 	import airdatabase.errors.throwError;
 	import airdatabase.interfaces.IDataVerb;
 	
@@ -80,6 +81,9 @@ package airdatabase
 		}
 		public function set asyncConnection(value:Boolean):void
 		{
+			if(value == true)
+				throwError( NotImplementedErrorMessage.ERROR, {feature: 'asyncConnection.  AirDataBase can only be connected in synchronous mode.'} );
+
 			_asyncConnection = value;
 		}
 		

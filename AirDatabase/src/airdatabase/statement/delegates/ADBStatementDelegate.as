@@ -1,6 +1,8 @@
 package airdatabase.statement.delegates
 {
 	import airdatabase.ADBStatement;
+	import airdatabase.errors.messages.NotImplementedErrorMessage;
+	import airdatabase.errors.throwError;
 	import airdatabase.interfaces.IADBStatement;
 	import airdatabase.interfaces.IADBStatementDelegate;
 	import airdatabase.statement.FieldObject;
@@ -34,6 +36,8 @@ package airdatabase.statement.delegates
 		// IDataNoun implementations
 		public function record(reference:*):IADBStatement
 		{
+			throwError( NotImplementedErrorMessage.ERROR , {feature: 'record()'});
+
 			return this;
 		}
 		

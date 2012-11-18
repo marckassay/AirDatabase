@@ -16,9 +16,7 @@ package airdatabase.statement.delegates
 	public class SelectDelegate extends ADBStatementDelegate
 	{
 		override public function record(reference:*):IADBStatement
-		{
-			throwError( NotImplementedErrorMessage.ERROR );
-			
+		{	
 			super.record(reference);
 			
 			return null;
