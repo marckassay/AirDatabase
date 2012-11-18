@@ -69,7 +69,7 @@ Will contain examples to assist developers on how to use AirDatabase with their 
 The AirDatabase project was and will continue to be developed with unit tests.  AirDatabase-unit-test contains all unit tests for this project.
 
 ### Roadmap: Short-term
-* Allow databases to be encrypted.
+* ~~Allow databases to be encrypted.~~
 
 ### Roadmap: Long-term
 * Have the project use strong-typed objects for storage.
