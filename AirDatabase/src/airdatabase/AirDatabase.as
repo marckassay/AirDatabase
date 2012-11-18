@@ -42,6 +42,13 @@ package airdatabase
 			return manipulator.remove(result,status);
 		}
 		
+		public function close():void
+		{
+			if(manipulator != null)
+			{
+				manipulator.close();
+			}
+		}
 		
 		public function get config():ADBConfig
 		{

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+	<p><b>Example_103:</b></p>
+
+	<p>This example creates a database in synchronous mode, with encryption enabled with a 
+	3 column table.  This example also demostrates a reencryption for <code>adb</code>  When
+	<code>FlexEvent.APPLICATION_COMPLETE</code> event is dispatched, it will insert a record
+	then retrieve that record by using the key field.  With the returned data, it will create
+	an <code>ArrayList</code> to be used in the <code>DataGrid</code>.</p>
+-->
+<s:WindowedApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:mx="library://ns.adobe.com/flex/mx" 
+					   xmlns:adb="https://github.com/marckassay/airdatabase"
+					   applicationComplete="applicationCompleteHandler(event)"
+					   >
+	
+	<fx:Declarations>
+		<adb:AirDatabase id="adb"
+					   >
+			<adb:config>
+				<adb:ADBConfig uri="atlasshrugged.db" enableEncryption="true"
+							   >
+					<adb:tables>
+						<adb:DefaultTable id="Characters"
+										  >
+							<adb:columns>
+								<adb:DefaultColumn id="key"			dataType="NUMERIC"/>
+								<adb:DefaultColumn id="firstName"	dataType="TEXT" />
+								<adb:DefaultColumn id="lastName"	dataType="TEXT"/>
+							</adb:columns>
+						</adb:DefaultTable>
+					</adb:tables>
+				</adb:ADBConfig>
+			</adb:config>
+		</adb:AirDatabase>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import airdatabase.filters.equals;
+			
+			import mx.events.FlexEvent;
+			import mx.utils.UIDUtil;
+			
+			[Bindable]
+			private var characters:ArrayList;
+			
+			protected function applicationCompleteHandler(event:FlexEvent):void
+			{
+				// insert a record by setting value to the key, firstName and lastName fields on the Characters table... 
+				adb.insert().field('key',			equals(3)).
+							 field('firstName',		equals('Dagny')).
+							 field('lastName',		equals('Taggart')).to('Characters');
+				
+				// select record with the key field...
+				var results:SQLResult = adb.select().field('key', equals(3)).from('Characters');
+				
+				// use results.data to create a new Arraylist for DataGrid below...
+				characters = new ArrayList(results.data);
+				
+				// close the sql connection...
+				adb.close();
+				
+				// assign new encryptionKey...
+				adb.config.encryptionKey = UIDUtil.createUID();
+				
+				adb.insert().field('key',			equals(4)).
+							 field('firstName',		equals('John')).
+							 field('lastName',		equals('Galt')).to('Characters');
+				
+				// select record with the key field...
+				results = adb.select().field('key', equals(4)).from('Characters');
+				
+				characters.addItem(results.data[0]);
+			}
+		]]>
+	</fx:Script>
+	
+	<s:DataGrid
+		top="20"
+		left="20"
+		right="20"
+		bottom="20"
+		dataProvider="{characters}" >
+		<s:columns>
+			<s:ArrayList>
+				<s:GridColumn
+					headerText="Key"
+					dataField="key" />
+				<s:GridColumn
+					headerText="First Name"
+					dataField="firstName" />
+				<s:GridColumn
+					headerText="Last Name"
+					dataField="lastName" />
+			</s:ArrayList>
+		</s:columns>
+	</s:DataGrid>
+	
+</s:WindowedApplication>

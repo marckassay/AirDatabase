@@ -45,6 +45,13 @@ package airdatabase.core
 			statement.manipulationVerb = DataManipulationVerb.REMOVE;
 			return statement;
 		}
+		// TODO: this will need to support async connections, if async is every implemented
+		public function close():void
+		{
+			sql.close();
+			
+			connected = false;
+		}
 		
 		public function processADBStatement(statement:ADBStatement):*
 		{
