@@ -98,7 +98,18 @@ package airdatabase.core
 			// is AirDatabase configured for sync connection...
 			if(config.asyncConnection == false)
 			{
-				sql.open( dataBaseFile, sqlMode, false, 1024, config.encryptionKey);
+				// if encryptionKeyChanged is false...
+				if(config.encryptionKeyChanged == false)
+				{
+					sql.open( dataBaseFile, sqlMode, false, 1024, config.encryptionKey);
+				}
+				// else if it is true, then we need to open the connection with the previous 
+				// encryption key and reencrypt it the new key...
+				else
+				{
+					sql.open( dataBaseFile, sqlMode, false, 1024, config.previousEncryptionKey);
+					sql.reencrypt(config.encryptionKey);
+				}
 				
 				// unlike in the else-if clause below, just invoke postConnected directly...
 				postConnected();

@@ -20,6 +20,8 @@ package airdatabase
 		
 		private var _encryptionKey:*;
 		
+		private var _previousEncryptionKey:ByteArray;
+		
 		private var _enableEncryption:Boolean;
 		
 		private var _asyncConnection:Boolean;
@@ -81,6 +83,12 @@ package airdatabase
 		public function get encryptionKeyChanged():Boolean
 		{
 			return _encryptionKeyChanged;
+		}
+		
+		
+		public function get previousEncryptionKey():ByteArray
+		{
+			return _previousEncryptionKey;
 		}
 		
 		
@@ -171,6 +179,8 @@ package airdatabase
 			}
 			else if((previousKey != null) && (previousKey != currentKey))
 			{
+				_previousEncryptionKey = previousKey;
+				
 				_encryptionKeyChanged = true;
 			}
 			else

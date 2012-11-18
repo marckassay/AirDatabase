@@ -134,8 +134,8 @@ package tests.airdatabase
 			assertEquals('Taggart', results.data[0].last);
 		}
 		
-		[Test(expects="flash.errors.SQLError", description="Since AIR encrypts SQLite database by value of a ByteArray and not by reference, this is attempting to reencrypt.  An Error will be thrown.  To reencyrpt, the SQLConnection.reencrypt method must be used.")]
-		public function testThatTwoSessionWithDifferentUIDIsAFailture():void
+		[Test]
+		public function testThatReencryptIsSuccessful():void
 		{
 			var uid_a:String = UIDUtil.createUID();
 			var uid_b:String = UIDUtil.createUID();
@@ -156,8 +156,10 @@ package tests.airdatabase
 			fixture = new AirDatabase();
 			fixture.config = getASQLiteConfig(false, uid_b);
 			
-			// exception should be thrown since the database is encrypted, but with a different encryption key.
 			var results:SQLResult = fixture.select().field('first', equals('Dagny')).field('last', equals('Taggart')).from('Characters');
+			
+			assertEquals('Dagny', results.data[0].first);
+			assertEquals('Taggart', results.data[0].last);
 		}
 		
 		[Test(expects="airdatabase.errors.IncorrectTypeError")]
